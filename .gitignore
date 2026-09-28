@@ -1,0 +1,40 @@
+# Python / Node
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+node_modules/
+build/
+dist/
+
+# Secrets
+.env
+.env.*
+
+# Working projects are private: client briefs, client names and client assets never go to this public repo
+projects/
+private/
+clients/
+
+# Generated inside any project (examples included); regenerate with `mstudio refresh` / `mstudio render`
+examples/*/renders/
+examples/*/versions/
+examples/*/vendor/
+examples/*/fonts/
+examples/*/studio.js
+examples/*/house.css
+examples/*/timing.js
+examples/*/data.js
+examples/*/reframe.js
+examples/*/snapshots/
+examples/*/footage/conformed/
+examples/*/footage/sheets/
+.hyperframes/
+
+# Media is ignored except where it is a deliberate, licensed fixture
+*.mov
+*.mp4
+!examples/*/preview.mp4
+!benchmarks/**/*.mp4
+graphify-out/

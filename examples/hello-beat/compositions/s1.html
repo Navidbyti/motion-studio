@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+        .s1-stack { position: absolute; top: var(--safe-top); bottom: var(--safe-bottom); left: var(--safe-side); right: var(--safe-side);
+          display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+        .s1-word { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; font-size: var(--t-hero); }
+        .s1-sub { font-size: var(--t-display); color: var(--muted); font-weight: 600; }
+      </style>
+      <div id="root" data-composition-id="s1" data-width="1080" data-height="1920">
+        <div id="s1-stack" class="s1-stack">
+          <h1 id="s1-hello" class="s1-word">HELLO</h1>
+          <p id="s1-beat" class="s1-word s1-sub">beat</p>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const S = Studio.forScene("s1");
+          const tl = gsap.timeline({ paused: true });
+          S.hit(tl, "s1.hello", "#s1-hello", { scale: 1.25, opacity: 0 }, { scale: 1, opacity: 1, ease: "expo.out" });
+          S.hit(tl, "s1.beat", "#s1-beat", { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "power3.out" });
+          S.drift(tl, "s1.hold", "#s1-stack", { scale: 1.015, transformOrigin: "0% 50%" });
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+{
+  "run_id": "20260928T1008Z_B2_v0.68.0",
+  "suite_version": "1",
+  "benchmark": "B2",
+  "benchmark_title": "Detailed, data-sensitive motion graphic (charts and real numbers)",
+  "build": {
+    "version": "0.68.0",
+    "installed_cli_version": "0.63.1",
+    "commit": "5b45ac242dc05d7b8986805ab755c8c6cc771c10",
+    "dirty_worktree": false
+  },
+  "agent": {
+    "product": "Claude Code (desktop app, subagent)",
+    "model": "claude-opus-5-5",
+    "effort": null
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "python": "3.13.2",
+    "ffmpeg": "ffmpeg version 9.0.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "inputs_verified": true,
+  "prompt": {
+    "file": "B2-climate-data/PROMPT.md",
+    "sha256": "a9497604a556fe88632f7f7a1a58adfb7b81c84a7f47b0e4b0d5fae6c95f8bb3",
+    "text": "Create a 45-second vertical data-driven motion graphic (1080×1920, 30 fps): \"CO₂ and global temperature since 1960\".\n\nUse `script.md` for the exact on-screen text and scene order. Take every number from the frozen data in `data/` only: the raw NASA and NOAA snapshots, the derived chart tables and `data/expected-values.json`. Do not fetch newer data. Charts must be exact and readable: a CO₂ line chart, a temperature-anomaly line chart with the 1951–1980 baseline marked, a decade bar chart, a top-3 ranking and animated counters. Label units and show the sources on screen. No voiceover. For sound, use only the music bed and sound effects in `benchmarks/shared/audio/`. Aim for a sober, editorial data-journalism style.\n"
+  },
+  "revision_prompt": {
+    "file": "B2-climate-data/REVISION.md",
+    "sha256": "2f889303fb6b4b5a193b17152af1d8d74ca15e9af268beea51c233b02f856b65",
+    "text": "Revise only the decade bar-chart scene (script scene 5). Color the 2020–2025 bar #E4572E and make every other bar gray #9AA0A6. Add the exact label \"6 years so far\" directly under the 2020–2025 bar. Do not change any value, axis, other scene, the total length or the audio.\n"
+  },
+  "expected": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration_s": 45.0,
+    "duration_tolerance_s": 0.5,
+    "audio": true
+  },
+  "timeline": {
+    "session_start": "2026-09-28T10:06:24Z",
+    "start": "2026-09-28T10:08:58Z",
+    "draft-delivered": "2026-09-28T10:22:24Z",
+    "revision-start": "2026-09-28T10:22:24Z",
+    "revision-delivered": "2026-09-28T10:24:48Z",
+    "finish": "2026-09-28T10:26:07Z"
+  },
+  "questions_to_user": [],
+  "assumptions": [
+    "Split several script scenes into multiple engine scenes (chart + counter) because a director-plan scene holds one visual plus title and subtitle; total kept at 1350 frames.",
+    "Multi-line script copy is placed in title/subtitle with line breaks; '+34.8% since 1960' is rendered as counter '+34.8%' plus caption 'since 1960'.",
+    "Line charts use display copies of the derived tables with an added axis_label column (years every 20 years, a single space elsewhere) so the x-axis is readable; plotted values are the unmodified derived rows.",
+    "The decade table display copy relabels '2020-2025' as '2020–2025' (en dash) as the script requires; values unchanged.",
+    "Line-chart scenes use long entry windows so the line draws for most of the scene, limiting exposure of the build's mandatory per-point value labels to the last ~15 frames.",
+    "Revision applied only as set_color #9AA0A6 on the whole decade chart; per-bar highlight and the '6 years so far' label are not expressible with the build's typed operations, and the engine was not modified.",
+    "Did not modify engine source; used an isolated .venv because the motion-engine on PATH was a different install (0.63.1)."
+  ],
+  "outputs": {
+    "draft": {
+      "local_path": "D:\\Hoteldebit\\Motion-gen-bench test\\run-B2\\runs\\b2-climate\\v2-preview\\preview.mp4",
+      "sha256": "255e814d265e0d08019d1f142e184c164d382fcebc5f79de875c4fe8148a98cf",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration_s": 45.0,
+      "video_codec": "h264",
+      "audio": true,
+      "bytes": 1733743,
+      "integrated_lufs": -21.3,
+      "true_peak_dbtp": -5.7,
+      "black_segments": 0,
+      "freeze_segments": 12,
+      "auto_checks": [
+        {
+          "item": "resolution",
+          "pass": true,
+          "evidence": "1080x1920"
+        },
+        {
+          "item": "fps",
+          "pass": true,
+          "evidence": "30.0"
+        },
+        {
+          "item": "duration",
+          "pass": true,
+          "evidence": "45.0 s"
+        },
+        {
+          "item": "audio stream",
+          "pass": true,
+          "evidence": "True"
+        },
+        {
+          "item": "true peak <= -1 dBTP",
+          "pass": true,
+          "evidence": "-5.7 dBTP"
+        }
+      ],
+      "proxy": "draft-proxy-540x960.mp4",
+      "contact_sheet": "draft-contact-1fps.jpg"
+    },
+    "revised": {
+      "local_path": "D:\\Hoteldebit\\Motion-gen-bench test\\run-B2\\runs\\b2-climate\\v3-preview\\preview.mp4",
+      "sha256": "cf37dd5fc8bbbba0f056e01d0b48e0b520697f9e0eaec1170c3b753845b59fb0",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration_s": 45.0,
+      "video_codec": "h264",
+      "audio": true,
+      "bytes": 1727919,
+      "integrated_lufs": -21.3,
+      "true_peak_dbtp": -5.7,
+      "black_segments": 0,
+      "freeze_segments": 12,
+      "auto_checks": [
+        {
+          "item": "resolution",
+          "pass": true,
+          "evidence": "1080x1920"
+        },
+        {
+          "item": "fps",
+          "pass": true,
+          "evidence": "30.0"
+        },
+        {
+          "item": "duration",
+          "pass": true,
+          "evidence": "45.0 s"
+        },
+        {
+          "item": "audio stream",
+          "pass": true,
+          "evidence": "True"
+        },
+        {
+          "item": "true peak <= -1 dBTP",
+          "pass": true,
+          "evidence": "-5.7 dBTP"
+        }
+      ],
+      "proxy": "revised-proxy-540x960.mp4",
+      "contact_sheet": "revised-contact-1fps.jpg"
+    }
+  },
+  "agent_checks": [
+    {
+      "item": "Every on-screen number matches the answer key or a derived row exactly, including the decimals",
+      "pass": false,
+      "evidence": "Every static figure matches. Chart values bound in v2.motion.json were compared programmatically with data/derived: all 67 CO2 rows, 146 temperature rows, 7 decade means and the top 3 are equal. Static callouts: f150-284 '1960: 316.91 ppm' / '2025: 427.35 ppm'; f360-464 '350', '1988', '400', '2015'; f1050-1229 '1. 2024 +1.29 °C', '2. 2025 +1.19 °C', '3. 2023 +1.17 °C'; decade bar labels f800-1049 '-0.03', '0.04', '0.25', '0.39', '0.59', '0.81', '1.07' (the decimals match, but they use an ASCII hyphen and no plus sign). Axis years are 1960/1980/2000/2020 and 1880-2020. Tick values are exempt. Two problems make this a fail. First, the counters display transitional values that are not in the answer key: f285-320 counts from 316.91 up to 427.35, and f465-494 counts from 0.0 up to 34.8. Second, the renderer prints the value of every line point once the reveal completes (f270-284, f450-464, f765-779). These are exact derived values, but they overlap each other and cannot be read."
+    },
+    {
+      "item": "CO₂ line plots all 67 annual points (1959–2025), not a smoothed or re-drawn approximation",
+      "pass": true,
+      "evidence": "The chart_2 and chart_4 dataset 'co2' has 67 rows, identical to derived/co2_ppm_annual.csv (1959 315.98 through 2025 427.35). The renderer draws a polyline through every point, and f280 shows the full curve ending at the '427.35' point label."
+    },
+    {
+      "item": "Temperature line plots all 146 annual points (1880–2025), with the zero/1951–1980 baseline labeled",
+      "pass": true,
+      "evidence": "Dataset 'temp' has 146 rows, identical to derived/temp_anomaly_c_annual.csv. f700 shows the drawn line with an emphasized zero line at tick '0.00' (axis -0.50 to 1.50). The baseline is explained by the on-screen line '0 = 1951–1980 average' (f540-779, bottom of frame) and the title 'compared with the 1951–1980 average'. Caveat: that label sits in a caption below the chart, not next to the zero line."
+    },
+    {
+      "item": "Bar heights are proportional to their values on a zero-based axis, and the negative 1960s bar goes below zero",
+      "pass": true,
+      "evidence": "f1000 (draft) and v3 f1000: bars grow from the 0.00 baseline on a linear -0.50 to 1.50 axis. The 1960s bar (-0.03) extends below 0.00. The top-3 chart (f1150) uses a 0 to 1.50 axis starting at zero."
+    },
+    {
+      "item": "The partial decade is labeled \"2020–2025\". Anomalies are never presented as absolute temperatures.",
+      "pass": true,
+      "evidence": "f800-1049: the category label reads '2020–2025' with an en dash, taken from a display copy of the derived table. The temperature scene is titled 'Global surface temperature / compared with the 1951–1980 average' with '0 = 1951–1980 average'. Values appear only as signed callouts ('+1.29 °C') or axis values. No 'temperature: X °C' wording appears."
+    },
+    {
+      "item": "Units (ppm, °C) and the sources end card are visible and readable",
+      "pass": true,
+      "evidence": "The 'ppm' axis unit label sits above the y-axis at f150-464, and '°C' at f540-1229. Both are small (22 px at 1080 wide) but legible. The CO2 callouts include 'ppm'. The end card at f1230-1349 (4 s) shows the full sources line and 'Snapshot retrieved 28 Sep 2026.' in large type (f1330)."
+    },
+    {
+      "item": "Nothing was fetched from the internet during the run (the raw file hashes still match SOURCES.md)",
+      "pass": true,
+      "evidence": "The SHA-256 of benchmarks/B2-climate-data/data/raw/GLB.Ts+dSST.csv is c9ce0750…018cd9, and co2_annmean_mlo.csv is 897770430c…71ac04. Both equal SOURCES.md, and `bench.py verify` printed OK. No network fetches were made during production. The only network use was the initial git clone and pip install during setup."
+    },
+    {
+      "item": "Every line in script.md appears exactly and is readable for ≥ 1.5 s. No text overflows or collides with chart labels.",
+      "pass": false,
+      "evidence": "Most lines appear exactly and stay on screen for 2.5 s or more. The following fail. (1) The decade value labels render as '-0.03', '0.04', '0.25', '0.39', '0.59', '0.81', '1.07'. The script requires '−0.03', '+0.04', and so on. The chart renderer has no sign or minus-sign formatting. (2) '+34.8% since 1960' is split across a counter '+34.8%' and a caption 'since 1960' (f465-539). (3) At f800-1049 the category labels '2010s' and '2020–2025' touch with no gap, and '2020–2025' overhangs the plot's right edge. (4) The per-point value labels on the line charts collide with each other and with the line in the final ~15 frames of each line scene (f270-284, f450-464, f765-779). (5) The script's 'two thin lines drawing upward' hook visual is not rendered. Scene 1 is typography only."
+    },
+    {
+      "item": "Counters land exactly on their final values and hold them",
+      "pass": true,
+      "evidence": "counter_3 reaches '427.35 ppm' at f321 (keyframe) and holds it through f359: 38 frames, fading out over the last 6 (f321 and f353 checked). counter_5 reaches '+34.8%' at f495 and holds it through f539: 44 frames (f495 and f533 checked). Both are formatted to exactly 2 and 1 decimals."
+    },
+    {
+      "item": "Only the shared music and SFX are used. True peak ≤ −1 dBTP.",
+      "pass": true,
+      "evidence": "The asset catalog contains only the 7 WAVs copied from benchmarks/shared/audio (music bed at -4 dB, SFX at -14 to -20 dB). ffmpeg ebur128 on the draft reports true peak -5.7 dBFS and integrated -21.3 LUFS. The revised mix.wav is byte-identical to the draft's."
+    },
+    {
+      "item": "Revision: only scene 5 changed. Values are unchanged, and other scenes are identical to the draft.",
+      "pass": true,
+      "evidence": "Comparing the lossless PNG frames of v2-preview and v3-preview, only frames 800-1049 differ: scene_7 (script scene 5), from chart start to scene end. mix.wav is byte-identical. The revision summary lists 1 rerendered scene and 8 reused scenes. The dataset and axis are unchanged. In the MP4s, scene 8 (f1050-1228) shows small H.264 re-encode differences (max 12/255 luma) even though its source frames are identical."
+    },
+    {
+      "item": "Revision instruction fulfilled (2020–2025 bar #E4572E, others #9AA0A6, label '6 years so far' under that bar)",
+      "pass": false,
+      "evidence": "Partial only. The typed revision set_color on chart_7 can apply only one color to the whole chart, so all 7 bars are now #9AA0A6 (v3 f1000). That includes the 2020–2025 bar, which should be #E4572E. There is no typed operation that adds a text element, so the label '6 years so far' is absent. The build has no per-bar color and no add-element revision."
+    }
+  ],
+  "notes": "Draft = v2 (v1 had unreadable axis labels, iterated once). Engine gaps: no per-bar colors, no add-text revision, chart value labels cannot be disabled or sign-formatted (ASCII hyphen, no plus), no chart markers/annotations, one visual per scene, fixed chart label font causes 2010s/2020–2025 collision. Music at -4 dB gives -21.3 LUFS integrated.",
+  "durations_s": {
+    "setup": 154.0,
+    "draft": 806.0,
+    "revision": 144.0,
+    "total": 1183.0
+  }
+}

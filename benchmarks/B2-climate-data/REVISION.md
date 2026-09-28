@@ -1,0 +1,1 @@
+Revise only the decade bar-chart scene (script scene 5). Color the 2020–2025 bar #E4572E and make every other bar gray #9AA0A6. Add the exact label "6 years so far" directly under the 2020–2025 bar. Do not change any value, axis, other scene, the total length or the audio.

@@ -1,0 +1,26 @@
+{
+  "from": "script.md",
+  "note": "Review: remove non-screen quotes, adjust min_seconds.",
+  "required": [
+    {
+      "text": "HELLO",
+      "min_seconds": 1.2
+    },
+    {
+      "text": "beat",
+      "min_seconds": 1.2
+    },
+    {
+      "text": "every hit",
+      "min_seconds": 1.2
+    },
+    {
+      "text": "lands",
+      "min_seconds": 1.2
+    },
+    {
+      "text": "120 BPM",
+      "min_seconds": 1.2
+    }
+  ]
+}

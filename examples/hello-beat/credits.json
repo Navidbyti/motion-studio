@@ -1,0 +1,23 @@
+{
+  "assets": [
+    {
+      "path": "fonts",
+      "what": "Inter, JetBrains Mono, Vazirmatn variable fonts",
+      "source": "https://github.com/google/fonts",
+      "license": "SIL Open Font License 1.1",
+      "author": "Rasmus Andersson; JetBrains; Saber Rastikerdar"
+    },
+    {
+      "path": "vendor/gsap.min.js",
+      "what": "GSAP 3.14.2",
+      "source": "https://gsap.com",
+      "license": "GSAP Standard 'No Charge' License"
+    },
+    {
+      "path": "audio/music.wav",
+      "what": "synthetic 120 BPM test track",
+      "source": "tests/synth.py (generated)",
+      "license": "CC0-1.0"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+        /* scene styles: prefix every id with "{{SCENE}}-" (ids must be unique across the assembled page) */
+      </style>
+      <div id="root" data-composition-id="{{SCENE}}" data-width="{{W}}" data-height="{{H}}">
+        <div class="safe">
+          <h1 id="{{SCENE}}-title" class="display" style="font-size: var(--t-display)">{{SCENE}}</h1>
+        </div>
+      </div>
+      <script>
+        (function () {
+          // Times here are scene-local; Studio.forScene converts beat-map frames for you.
+          const S = Studio.forScene("{{SCENE}}");
+          const tl = gsap.timeline({ paused: true });
+          // S.hit(tl, "{{SCENE}}.title", "#{{SCENE}}-title", { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "expo.out" });
+          window.__timelines["{{SCENE}}"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

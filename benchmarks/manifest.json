@@ -1,0 +1,177 @@
+{
+  "suite_version": "1",
+  "files": {
+    "B1-gps-explainer/benchmark.json": {
+      "sha256": "437ac85506c5a1786c11997aaffa29bb8265ae496c204b2e275df45976ddb068",
+      "bytes": 432
+    },
+    "B1-gps-explainer/CHECKLIST.md": {
+      "sha256": "aaa18e9f5e07a5b3811f479ba457f58d453854e5b68dd6b53a0d582ac5df29bd",
+      "bytes": 1024
+    },
+    "B1-gps-explainer/PROMPT.md": {
+      "sha256": "30863d0b18a14cc21f8217ddb829b7c5f8a800145b4c9b71b4c2ef00c0f6a5b6",
+      "bytes": 334
+    },
+    "B1-gps-explainer/REVISION.md": {
+      "sha256": "1cbf3b1ba8c7c1c9f5a6a35baa7a3568b61de843c6f58f45cf56980291c135b9",
+      "bytes": 307
+    },
+    "B1-gps-explainer/script.md": {
+      "sha256": "af46187551bf021be88b6cd9047a3ee3b72a3a5dc18eb5238ce09549673d5f6d",
+      "bytes": 2196
+    },
+    "B1-gps-explainer/sources/gps-gov-accuracy.txt": {
+      "sha256": "ccb66774e07a7b9b8bef64b87fbdc54108af6fe3d0bb5b92db0f821711ff553e",
+      "bytes": 5541
+    },
+    "B1-gps-explainer/sources/gps-gov-space-segment.txt": {
+      "sha256": "f7aa7a4631e07e984f8ff33f2b5847cafd36d4f740007d5d19036cce5e35af0a",
+      "bytes": 4804
+    },
+    "B2-climate-data/benchmark.json": {
+      "sha256": "ab78a54ffda7a992d21835d23b48e7c7b9e80c109bc146adcc2a093b83083b15",
+      "bytes": 514
+    },
+    "B2-climate-data/CHECKLIST.md": {
+      "sha256": "d3b4aec312f7fdfb8b1a515154d651d0354c4eb8d6642cda62ffee397c3ffa15",
+      "bytes": 1486
+    },
+    "B2-climate-data/data/derive.py": {
+      "sha256": "943ff3b7f1604815700db9070cdb91f639826fe0cd3e60a2582ef823963aa7a1",
+      "bytes": 5404
+    },
+    "B2-climate-data/data/derived/co2_ppm_annual.csv": {
+      "sha256": "ad5dee33a1ef76b9603522c9b8cf3ead01b139accb348e4e1aeb68a9d9aca254",
+      "bytes": 817
+    },
+    "B2-climate-data/data/derived/temp_anomaly_c_annual.csv": {
+      "sha256": "9321fc09ade7544f15f1f8c5c542b899c3b2f2d90896cd7db5a90628da0e2e90",
+      "bytes": 1554
+    },
+    "B2-climate-data/data/derived/temp_decade_means_c.csv": {
+      "sha256": "0661fa374135bbc861c7fe793ce0674402603b87dacf3e85511b1beb4e4d7854",
+      "bytes": 212
+    },
+    "B2-climate-data/data/derived/warmest_years_top5.csv": {
+      "sha256": "51e9727eff692b3124b01653737a337408fbf475e9d4712c668e468c62ea0bf0",
+      "bytes": 80
+    },
+    "B2-climate-data/data/expected-values.json": {
+      "sha256": "6f8a867970f6a56ec2171a3b42cbd4fcd79499aa3049af7f0aa8f9b7a6fcc1a3",
+      "bytes": 3206
+    },
+    "B2-climate-data/data/raw/co2_annmean_mlo.csv": {
+      "sha256": "897770430ce802e232a0be272bff74b92757c39bfda26be1e213b19cbf71ac04",
+      "bytes": 3134
+    },
+    "B2-climate-data/data/raw/GLB.Ts+dSST.csv": {
+      "sha256": "c9ce0750ca93a8241c42fe86cd5bf54d07b28b21ae650b0ae49a206907018cd9",
+      "bytes": 12887
+    },
+    "B2-climate-data/PROMPT.md": {
+      "sha256": "a9497604a556fe88632f7f7a1a58adfb7b81c84a7f47b0e4b0d5fae6c95f8bb3",
+      "bytes": 731
+    },
+    "B2-climate-data/REVISION.md": {
+      "sha256": "2f889303fb6b4b5a193b17152af1d8d74ca15e9af268beea51c233b02f856b65",
+      "bytes": 278
+    },
+    "B2-climate-data/script.md": {
+      "sha256": "42098e25840e225ed40823e8cc8b945c7d511e854ccd5d4b32cebaa3d9bc7f2e",
+      "bytes": 2725
+    },
+    "B2-climate-data/SOURCES.md": {
+      "sha256": "b85c0b5b9d87ab3ed3c1765ffec88a3b61dddc333b688c440b1fb2e6a8aa57c1",
+      "bytes": 1456
+    },
+    "B3-artemis-recap/benchmark.json": {
+      "sha256": "a9e38e67f8770626b81d7ba2e1776e6b7415ebe45deb12db1c7137d878465bf2",
+      "bytes": 541
+    },
+    "B3-artemis-recap/CHECKLIST.md": {
+      "sha256": "f549c64f6741d341a6ac28c94852c7c89cac492e769525087f526fcfb322329d",
+      "bytes": 1297
+    },
+    "B3-artemis-recap/footage/01_rollout_night.mp4": {
+      "sha256": "bfcb9be9b3d0c795c91a9971e8ef7af3808d03c4c8b5490a1eb64665059c711b",
+      "bytes": 3760109
+    },
+    "B3-artemis-recap/footage/02_ignition_closeup.mp4": {
+      "sha256": "3888ced2a7f121669f9a9c232498ce23c63e7a2a796fe6020bafb8f5cda48816",
+      "bytes": 13633782
+    },
+    "B3-artemis-recap/footage/03_liftoff_wide.mp4": {
+      "sha256": "02caae074595722498c87f109f7e75bbfb29660fcaa62112d4bbe894fbbaebb3",
+      "bytes": 6415902
+    },
+    "B3-artemis-recap/footage/04_orion_earth.mp4": {
+      "sha256": "1192c67a76d61bcd4b917376543679d9b2f073c0c6ad29d89b8435b3e7ffefa6",
+      "bytes": 754212
+    },
+    "B3-artemis-recap/footage/05_orion_moon.mp4": {
+      "sha256": "7a5cacbff7b84dde703e438a2fad1961d09f0adf3177704e272404110621a3aa",
+      "bytes": 1002641
+    },
+    "B3-artemis-recap/footage/06_splashdown.mp4": {
+      "sha256": "9c6f7a8b40f3a23997497b4935103ced363ab7c609cf16aa23b7b754a9ca43fb",
+      "bytes": 1723685
+    },
+    "B3-artemis-recap/footage/SOURCES.md": {
+      "sha256": "97046531968a45426ded3b404ee6c4e1663cd2c312def5a375bb47abde368e50",
+      "bytes": 2190
+    },
+    "B3-artemis-recap/PROMPT.md": {
+      "sha256": "0ada1efaa92e136935da5afd056921397268a01773a01fd20b26bc3b0d194bf0",
+      "bytes": 738
+    },
+    "B3-artemis-recap/REVISION.md": {
+      "sha256": "0d2351faa613fd0407cf80c5508be01fe01c26d14f442e95bcc0285284e02ca2",
+      "bytes": 306
+    },
+    "B3-artemis-recap/script.md": {
+      "sha256": "e3d0fc1484ac64f9e606b404fde21e7fe9cba4798c42a3820eb7b4664c2d1299",
+      "bytes": 2643
+    },
+    "B3-artemis-recap/sources/nasa-artemis-i.txt": {
+      "sha256": "7f262bee4204e4470fdc1be9cdfd04cf094bedb4f16885b12abd4efde7c14ca2",
+      "bytes": 12232
+    },
+    "shared/audio/generate_audio.py": {
+      "sha256": "9fe94f29a602c79ab3c1fc475eada7d769ceddc14cac05722b6e4c174d733e25",
+      "bytes": 5043
+    },
+    "shared/audio/music-bed-100bpm-48s.wav": {
+      "sha256": "adc6aa9175a883504a5c509ef6d977a41f5a01330842cfeca4cf2937b6695228",
+      "bytes": 4608044
+    },
+    "shared/audio/README.md": {
+      "sha256": "9c713a071877969d46ad750c6b4e074d58a7dfb70a9f4a6b3e432ee3b72ac160",
+      "bytes": 1030
+    },
+    "shared/audio/sfx-impact.wav": {
+      "sha256": "0083b53880b774c22bed57da6159fc28be6f53ce3ba34e4a337a5d2ff0c5b355",
+      "bytes": 144044
+    },
+    "shared/audio/sfx-pop.wav": {
+      "sha256": "e0ae1069fbcd546ffd603fb230d76c802c8b00d2c2254df0bc607f0e7c51a117",
+      "bytes": 11564
+    },
+    "shared/audio/sfx-riser.wav": {
+      "sha256": "c91ce0763ef9e7829c1b78b460109ce6cc19d33851f54640888598fd11ec42a6",
+      "bytes": 192044
+    },
+    "shared/audio/sfx-tick.wav": {
+      "sha256": "1e179bdcd1eef468549a3082e13bb5f8bc6380de1cabbff8a562826915d8e6b5",
+      "bytes": 4844
+    },
+    "shared/audio/sfx-whoosh-long.wav": {
+      "sha256": "f55beeefff906b48f6b4a04eb4a5fb7c8a2ac2ffcc16e9627259fa9e16d72eaa",
+      "bytes": 115244
+    },
+    "shared/audio/sfx-whoosh-short.wav": {
+      "sha256": "956b53af7123336301c9172f60cd75fac1f78e6fab4cb71e6ef993e82fa55f29",
+      "bytes": 67244
+    }
+  }
+}

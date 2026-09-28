@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+        .s2-stack { position: absolute; top: var(--safe-top); bottom: var(--safe-bottom); left: var(--safe-side); right: var(--safe-side);
+          display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+        .s2-word { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; font-size: var(--t-hero); }
+        #s2-wipe { position: absolute; inset: 0; background: var(--ink-2); }
+        .s2-accent { color: var(--accent); }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+        <div id="s2-wipe"></div>
+        <div class="s2-stack">
+          <h2 id="s2-every" class="s2-word">every</h2>
+          <h2 id="s2-hit" class="s2-word s2-accent">hit</h2>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const S = Studio.forScene("s2");
+          const tl = gsap.timeline({ paused: true });
+          S.hit(tl, "s2.open", "#s2-wipe", { xPercent: -100 }, { xPercent: 0, ease: "power4.inOut" });
+          S.hit(tl, "s2.every", "#s2-every", { scale: 1.3, opacity: 0 }, { scale: 1, opacity: 1, ease: "back.out(2)" });
+          S.hit(tl, "s2.hit", "#s2-hit", { scale: 1.3, opacity: 0 }, { scale: 1, opacity: 1, ease: "back.out(2)" });
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

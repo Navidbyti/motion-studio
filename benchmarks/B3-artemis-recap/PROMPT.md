@@ -1,0 +1,3 @@
+Edit the six attached NASA Artemis I clips in `footage/` into a 30-second vertical mission-recap video (1080×1920, 30 fps), with motion graphics and transitions on top.
+
+Use `script.md` for the clip order, exact on-screen text and the facts, which are sourced in `sources/`. The footage is landscape and mixed resolution and frame rate, so reframe each shot for vertical and keep the subject in frame. Add a title, lower thirds, an animated distance counter and an end card. Use at least three different transition types, timed to the music. Keep the real launch sound from clips 02 and 03 under the music bed, and use only the music and sound effects in `benchmarks/shared/audio/`. No voiceover. Aim for a cinematic, high-energy recap.

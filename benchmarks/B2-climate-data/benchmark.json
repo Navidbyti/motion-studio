@@ -1,0 +1,10 @@
+{
+  "id": "B2",
+  "slug": "climate-data",
+  "title": "Detailed, data-sensitive motion graphic (charts and real numbers)",
+  "tests": ["exact data binding", "line/bar/ranking charts", "animated counters", "source attribution", "units and signs", "dense-copy pacing"],
+  "prompt": "PROMPT.md",
+  "revision": "REVISION.md",
+  "inputs": ["script.md", "SOURCES.md", "data/", "../shared/audio/"],
+  "expected": {"width": 1080, "height": 1920, "fps": 30, "duration_s": 45.0, "duration_tolerance_s": 0.5, "audio": true}
+}

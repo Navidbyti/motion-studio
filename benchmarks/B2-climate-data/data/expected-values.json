@@ -1,0 +1,139 @@
+{
+  "suite": "benchmarks v1",
+  "rounding": "Decimal ROUND_HALF_UP",
+  "sources": {
+    "temperature": {
+      "file": "raw/GLB.Ts+dSST.csv",
+      "sha256": "c9ce0750ca93a8241c42fe86cd5bf54d07b28b21ae650b0ae49a206907018cd9"
+    },
+    "co2": {
+      "file": "raw/co2_annmean_mlo.csv",
+      "sha256": "897770430ce802e232a0be272bff74b92757c39bfda26be1e213b19cbf71ac04"
+    }
+  },
+  "values": {
+    "co2_1960_ppm": {
+      "value": "316.91",
+      "source": "co2",
+      "line": 46
+    },
+    "co2_2025_ppm": {
+      "value": "427.35",
+      "source": "co2",
+      "line": 111
+    },
+    "co2_change_1960_2025_ppm": {
+      "value": "110.44",
+      "source": "co2",
+      "derived": "2025 minus 1960"
+    },
+    "co2_change_1960_2025_pct": {
+      "value": "34.8",
+      "source": "co2",
+      "derived": "(2025 / 1960 - 1) x 100"
+    },
+    "co2_first_year_at_or_above_350": {
+      "value": 1988,
+      "ppm": "351.69",
+      "source": "co2",
+      "line": 74
+    },
+    "co2_first_year_at_or_above_400": {
+      "value": 2015,
+      "ppm": "401.01",
+      "source": "co2",
+      "line": 101
+    },
+    "temp_1960_c": {
+      "value": "-0.02",
+      "source": "temperature",
+      "line": 83
+    },
+    "temp_2025_c": {
+      "value": "1.19",
+      "source": "temperature",
+      "line": 148
+    },
+    "temp_decade_means_c": [
+      {
+        "label": "1960s",
+        "first_year": 1960,
+        "last_year": 1969,
+        "years": 10,
+        "mean_exact": "-0.03",
+        "mean_c": "-0.03"
+      },
+      {
+        "label": "1970s",
+        "first_year": 1970,
+        "last_year": 1979,
+        "years": 10,
+        "mean_exact": "0.035",
+        "mean_c": "0.04"
+      },
+      {
+        "label": "1980s",
+        "first_year": 1980,
+        "last_year": 1989,
+        "years": 10,
+        "mean_exact": "0.247",
+        "mean_c": "0.25"
+      },
+      {
+        "label": "1990s",
+        "first_year": 1990,
+        "last_year": 1999,
+        "years": 10,
+        "mean_exact": "0.387",
+        "mean_c": "0.39"
+      },
+      {
+        "label": "2000s",
+        "first_year": 2000,
+        "last_year": 2009,
+        "years": 10,
+        "mean_exact": "0.588",
+        "mean_c": "0.59"
+      },
+      {
+        "label": "2010s",
+        "first_year": 2010,
+        "last_year": 2019,
+        "years": 10,
+        "mean_exact": "0.807",
+        "mean_c": "0.81"
+      },
+      {
+        "label": "2020-2025",
+        "first_year": 2020,
+        "last_year": 2025,
+        "years": 6,
+        "mean_exact": "1.066666666666666666666666667",
+        "mean_c": "1.07"
+      }
+    ],
+    "warmest_years_top3": [
+      {
+        "rank": 1,
+        "year": 2024,
+        "anomaly_c": "1.29",
+        "line": 147
+      },
+      {
+        "rank": 2,
+        "year": 2025,
+        "anomaly_c": "1.19",
+        "line": 148
+      },
+      {
+        "rank": 3,
+        "year": 2023,
+        "anomaly_c": "1.17",
+        "line": 146
+      }
+    ],
+    "temp_record_first_year": 1880,
+    "temp_record_last_complete_year": 2025,
+    "temp_baseline": "1951-1980 mean"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Hello, beat",
+  "goal": "",
+  "audience": "",
+  "platform": "",
+  "ratio": "9:16",
+  "fps": 30,
+  "duration": 16.0,
+  "language": "en",
+  "direction": "ltr",
+  "brand": "house",
+  "music": {
+    "source": "file",
+    "file": "",
+    "license": ""
+  },
+  "voiceover": {
+    "enabled": false,
+    "file": "",
+    "script": ""
+  },
+  "inputs": [],
+  "needs": {
+    "facts": false,
+    "data": false,
+    "footage": false,
+    "stock": false
+  },
+  "deliverables": [
+    "9:16"
+  ],
+  "constraints": [],
+  "notes": ""
+}

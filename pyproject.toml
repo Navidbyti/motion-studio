@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "motion-studio"
+version = "0.1.0"
+description = "Turns a coding agent into a beat-synced motion-graphics studio (HTML + GSAP via HyperFrames)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "numpy>=1.26,<3",
+  "scipy>=1.11,<2",
+  "jsonschema>=4.21,<5",
+  "openpyxl>=3.1,<4",
+  "pypdf>=4,<7",
+  "Pillow>=10,<13",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[project.scripts]
+mstudio = "motion_studio.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+motion_studio = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: needs Chrome + HyperFrames render (run with -m slow)"]
+addopts = "-m 'not slow'"

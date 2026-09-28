@@ -1,0 +1,71 @@
+Source: GPS.gov - Space Segment
+URL: https://www.gps.gov/space-segment
+Publisher: U.S. government (public domain)
+Retrieved: 2026-09-28
+Note: plain-text extraction of the page's main content, frozen for the benchmark. Do not refetch during a run.
+
+Space Segment
+The GPS space segment consists of a constellation of satellites transmitting radio signals to users.
+The United States is committed to maintaining the availability of at least 24 operational GPS satellites, 95% of the time.
+To ensure this commitment, the U.S. Space Force has been flying 31 operational GPS satellites for well over a decade.
+Constellation Arrangement
+GPS satellites fly in medium Earth orbit (MEO) at an altitude of approximately 20,200 km (12,550 miles). Each satellite circles the Earth twice a day.
+Image
+24 satellite GPS constellation
+Expandable 24-Slot satellite constellation, as defined in the SPS Performance Standard. The satellites in the GPS constellation are arranged into six equally-spaced orbital planes surrounding the Earth. Each plane contains four "slots" occupied by baseline satellites. This 24-slot arrangement ensures users can view at least four satellites from virtually any point on the planet.
+The Space Force normally flies more than 24 GPS satellites to maintain coverage whenever the baseline satellites are serviced or decommissioned. The extra satellites may increase GPS performance but are not considered part of the core constellation.
+In June 2011, the Air Force successfully completed a GPS constellation expansion known as the "Expandable 24" configuration. Three of the 24 slots were expanded, and six satellites were repositioned, so that three of the extra satellites became part of the constellation baseline. As a result, GPS now effectively operates as a 27-slot constellation with improved coverage in most parts of the world.
+Technical details about the orbits, coverage, and performance of the GPS satellite constellation are documented in the GPS Performance Standards .
+Current and Future Satellite Generations
+The GPS constellation is a mix of old and new satellites. The following table summarizes the features of the current and future generations of GPS satellites, including Block IIA (2nd generation, "Advanced"), Block IIR ("Replenishment"), Block IIR-M ("Modernized"), Block IIF ("Follow-on"), GPS III, and GPS IIIF ("Follow-on").
+As of July 3, 2023, there were a total of 31 operational satellites in the GPS constellation, not including the decommissioned, on-orbit spares.
+For more up-to-date constellation status information, visit the NAVCEN website .
+Satellites
+Block IIA (0 operational)
+Coarse Acquisition (C/A) code on L1 frequency for civil users
+Precise P(Y) code on L1 & L2 frequencies for military users
+7.5-year design lifespan
+Launched in 1990-1997
+Last one decommissioned in 2019
+Block IIR (6 operational)
+C/A code on L1
+P(Y) code on L1 & L2
+On-board clock monitoring
+7.5-year design lifespan
+Launched in 1997-2004
+Block IIR-M
+All legacy signals
+2nd civil signal on L2 (L2C)
+New military M code signals for enhanced jam resistance
+Flexible power levels for military signals
+7.5-year design lifespan
+Launched in 2005-2009
+Block IIF (12 operational)
+All Block IIR-M signals
+3rd civil signal on L5 frequency (L5)
+Advanced atomic clocks
+Improved accuracy, signal strength, and quality
+12-year design lifespan
+Launched in 2010-2016
+GPS III/IIIF (6 operational)
+All Block IIF signals
+4th civil signal on L1 (L1C)
+Enhanced signal reliability, accuracy, and integrity
+No Selective Availability
+15-year design lifespan
+IIIF: laser reflectors; search & rescue payload
+First launch in 2018
+Recent Developments
+GPS III
+May 25, 2022: The Space Force set the fifth GPS III satellite to healthy (usable) status.
+Jun 28, 2021: The Space Force transferred Satellite Control Authority of the fifth GPS III satellite to the 2nd Space Operations Squadron.
+Jun 17, 2021: The Space Force and its partners successfully launched the fifth GPS III satellite into orbit.
+Apr 6, 2021: The fifth GPS III satellite arrived at Cape Canaveral Space Force Station for launch.
+Dec 1, 2020: GPS III SV04 received operational acceptance.
+Nov 5, 2020: The Space Force and its partners successfully launched the fourth GPS III satellite into orbit.
+Jun 30, 2020: The Space Force successfully launched the third GPS III satellite into orbit.
+Jun 2020: The Space Force completed the core mate of the eighth GPS III satellite and named it "Katherine Johnson."
+May 2020: The Space Force performed the first GPS III maneuver.
+Apr 2020: The Space Force rescheduled the launch of the third GPS III satellite from April to June 2020.
+Mar 2020: The Space Force accepted control of the second GPS III satellite.
+Jan 2020: The Air Force set the first GPS III satellite as healthy and active to users.

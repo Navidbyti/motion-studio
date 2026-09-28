@@ -1,0 +1,10 @@
+{
+  "id": "B1",
+  "slug": "gps-explainer",
+  "title": "30-second explainer from a short prompt",
+  "tests": ["short-prompt direction", "diagram animation", "exact copy", "pacing", "music + SFX"],
+  "prompt": "PROMPT.md",
+  "revision": "REVISION.md",
+  "inputs": ["script.md", "sources/", "../shared/audio/"],
+  "expected": {"width": 1080, "height": 1920, "fps": 30, "duration_s": 30.0, "duration_tolerance_s": 0.5, "audio": true}
+}

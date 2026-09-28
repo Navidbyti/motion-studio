@@ -1,0 +1,24 @@
+{
+  "fps": 30,
+  "duration": 16,
+  "music": {"file": "audio/music.wav", "beats": "audio/beats.json", "start_at": 0, "offset": 0},
+  "rules": {"max_big_hits_per_bar": 1},
+  "scenes": [
+    {"id": "s1", "purpose": "hook", "start": {"downbeat": 0}, "end": {"downbeat": 2}, "events": [
+      {"id": "s1.hello", "tier": "big", "kind": "slam", "at": {"downbeat": 0}, "anticipation": 0},
+      {"id": "s1.beat", "tier": "entrance", "at": {"beat": 2}},
+      {"id": "s1.hold", "tier": "hold", "at": {"beat": 4}, "until": {"downbeat": 2}}
+    ]},
+    {"id": "s2", "purpose": "build", "start": {"downbeat": 2}, "end": {"drop": 0}, "events": [
+      {"id": "s2.open", "tier": "big", "kind": "wipe", "at": {"downbeat": 2}},
+      {"id": "s2.every", "tier": "punch", "at": {"snare": 0}},
+      {"id": "s2.hit", "tier": "punch", "at": {"snare": 1}}
+    ]},
+    {"id": "s3", "purpose": "payoff", "start": {"drop": 0}, "events": [
+      {"id": "s3.flood", "tier": "scene", "kind": "flood", "at": {"drop": 0}},
+      {"id": "s3.lands", "tier": "big", "kind": "slam", "at": {"downbeat": 5}},
+      {"id": "s3.count", "tier": "entrance", "at": {"downbeat": 6}},
+      {"id": "s3.count_land", "tier": "big", "at": {"downbeat": 7}, "sfx": "accent"}
+    ]}
+  ]
+}

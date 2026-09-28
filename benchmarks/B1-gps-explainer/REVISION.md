@@ -1,0 +1,1 @@
+Revise only the trilateration scene (script scene 5). Make its satellite and sphere diagram 20% larger, change that scene's accent color to #00C2A8, and change its first line to the exact text "One signal: you're somewhere on this sphere." Leave every other scene, the total length and the audio unchanged.

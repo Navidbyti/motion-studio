@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+        .s3-stack { position: absolute; top: var(--safe-top); bottom: var(--safe-bottom); left: var(--safe-side); right: var(--safe-side);
+          display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+        .s3-word { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; font-size: var(--t-hero); }
+        #s3-flood { position: absolute; inset: 0; background: var(--accent); }
+        .s3-word { color: var(--ink); }
+        .s3-count { font-family: var(--font-data); font-size: var(--t-h1); color: var(--ink); }
+      </style>
+      <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+        <div id="s3-flood"></div>
+        <div class="s3-stack">
+          <h1 id="s3-lands" class="s3-word">lands</h1>
+          <p class="s3-count"><span id="s3-tempo">0 BPM</span></p>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const S = Studio.forScene("s3");
+          const tl = gsap.timeline({ paused: true });
+          S.hit(tl, "s3.flood", "#s3-flood", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, ease: "expo.out" });
+          S.hit(tl, "s3.lands", "#s3-lands", { yPercent: 80, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "expo.out" });
+          S.counter(tl, "#s3-tempo", "tempo", { from: 0, start: "s3.count", impact: "s3.count_land" });
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

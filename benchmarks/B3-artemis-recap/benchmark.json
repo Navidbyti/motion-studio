@@ -1,0 +1,10 @@
+{
+  "id": "B3",
+  "slug": "artemis-recap",
+  "title": "Motion graphics and transitions on existing footage",
+  "tests": ["footage import and conform", "vertical reframing", "burn-in and pillarbox avoidance", "lower thirds and counters over video", "transitions", "natural sound + music mix"],
+  "prompt": "PROMPT.md",
+  "revision": "REVISION.md",
+  "inputs": ["script.md", "footage/", "sources/", "../shared/audio/"],
+  "expected": {"width": 1080, "height": 1920, "fps": 30, "duration_s": 30.0, "duration_tolerance_s": 0.5, "audio": true}
+}

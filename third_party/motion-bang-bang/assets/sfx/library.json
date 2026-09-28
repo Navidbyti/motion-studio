@@ -1,0 +1,201 @@
+{
+  "root": ".",
+  "manifest": "manifest.json",
+
+  "_readme": [
+    "Source of truth for the Motion Bang Bang SFX bundle. Edit a prompt here, then run:",
+    "  python scripts/elevenlabs_audio.py sfx --spec assets/sfx/library.json --preview _preview.wav",
+    "Existing files are skipped unless --force is given, so this doubles as an extend-the-library recipe.",
+    "duration_seconds is what you are billed for, not what you keep: 'tight' one-shots are",
+    "silence-trimmed afterwards, so request a little headroom and let the trim decide the length.",
+    "Prompts always name source + surface + mic perspective, and forbid musical content, because",
+    "a tonal stinger collides with any music bed added later."
+  ],
+
+  "mix": {
+    "_note": "Relative to each asset's normalised -3 dBFS peak. Intensity is a mix-time parameter: every file in the bundle sits at the same peak on purpose, so a library click and a library impact differ only by what the mixer applies.",
+    "impact":     { "gain_db": -6,  "max_hits_per_s": 2,   "duck_under_speech": false },
+    "stamp":      { "gain_db": -9,  "max_hits_per_s": 2,   "duck_under_speech": false },
+    "whoosh":     { "gain_db": -10, "max_hits_per_s": 1.5, "duck_under_speech": true },
+    "transition": { "gain_db": -11, "max_hits_per_s": 0.2, "duck_under_speech": false },
+    "accent":     { "gain_db": -12, "max_hits_per_s": 1,   "duck_under_speech": false },
+    "paper":      { "gain_db": -13, "max_hits_per_s": 2,   "duck_under_speech": true },
+    "pen":        { "gain_db": -14, "max_hits_per_s": 1.5, "duck_under_speech": true },
+    "ui":         { "gain_db": -18, "max_hits_per_s": 3,   "duck_under_speech": true },
+    "ambience":   { "gain_db": -30, "max_hits_per_s": 0,   "duck_under_speech": false, "continuous": true }
+  },
+
+  "assets": [
+    {
+      "file": "impact/impact-heavy-01.wav",
+      "family": "impact",
+      "trigger": ["slam", "fly", "block"],
+      "prompt": "Heavy object dropped onto a solid wooden table, deep soft thud, close mic, dry room, sharp attack, quick decay, no rumble tail, no reverb, single hit",
+      "duration_seconds": 1.2,
+      "prompt_influence": 0.45
+    },
+    {
+      "file": "impact/impact-medium-02.wav",
+      "family": "impact",
+      "trigger": ["slam", "pop", "fly"],
+      "prompt": "Thick hardcover book dropped flat onto a desk, dull cardboard thud, close mic, dry, single event, no reverb, no music",
+      "duration_seconds": 0.9,
+      "prompt_influence": 0.45
+    },
+    {
+      "file": "impact/impact-dry-03.wav",
+      "family": "impact",
+      "trigger": ["block", "swap", "slam"],
+      "prompt": "Two knuckles knocking once on a wooden table, short dry knock, tight, close mic, no reverb, single hit",
+      "duration_seconds": 0.7,
+      "prompt_influence": 0.4
+    },
+
+    {
+      "file": "whoosh/whoosh-camera-large-01.wav",
+      "family": "whoosh",
+      "trigger": ["into", "settle", "look", "home"],
+      "prompt": "Long smooth air sweep passing left to right, low mid whoosh, soft edges, no impact at the end, dry, no reverb, not musical",
+      "duration_seconds": 1.6,
+      "prompt_influence": 0.3
+    },
+    {
+      "file": "whoosh/whoosh-object-medium-02.wav",
+      "family": "whoosh",
+      "trigger": ["fly", "flyOut"],
+      "prompt": "Medium sized object passing quickly through air, whoosh with a little body, dry, single event, no reverb",
+      "duration_seconds": 1.0,
+      "prompt_influence": 0.35
+    },
+    {
+      "file": "whoosh/whoosh-fast-thin-03.wav",
+      "family": "whoosh",
+      "trigger": ["flyOut", "unlabel", "pop"],
+      "prompt": "Quick thin sheet of paper flicked through the air, high airy short whoosh, very brief, dry, close mic, no reverb",
+      "duration_seconds": 0.7,
+      "prompt_influence": 0.35
+    },
+
+    {
+      "file": "paper/paper-sheet-flip-01.wav",
+      "family": "paper",
+      "trigger": ["say", "label"],
+      "prompt": "Single sheet of A4 paper flipped quickly, crisp bright paper snap, close mic, dry, short, no reverb",
+      "duration_seconds": 0.7,
+      "prompt_influence": 0.4
+    },
+    {
+      "file": "paper/paper-archive-rustle-02.wav",
+      "family": "paper",
+      "trigger": ["photo", "swap", "say"],
+      "prompt": "Stack of old archive documents being handled and pages turned, layered dry paper rustle, intimate close mic, no reverb, no voices",
+      "duration_seconds": 1.2,
+      "prompt_influence": 0.4
+    },
+    {
+      "file": "paper/photo-cardboard-place-03.wav",
+      "family": "paper",
+      "trigger": ["photo", "fly"],
+      "prompt": "Stiff cardboard photo card laid flat onto a wooden desk, light clack with paper edge, close mic, dry, single event",
+      "duration_seconds": 0.7,
+      "prompt_influence": 0.45
+    },
+
+    {
+      "file": "pen/pen-marker-scribble-01.wav",
+      "family": "pen",
+      "trigger": ["draw", "drawR", "drawN"],
+      "prompt": "Felt tip marker scribbling a short stroke on paper, scratchy dry pen sound, close mic, no reverb, single gesture",
+      "duration_seconds": 1.0,
+      "prompt_influence": 0.45
+    },
+    {
+      "file": "pen/pen-brush-chalk-02.wav",
+      "family": "pen",
+      "trigger": ["draw", "drawN"],
+      "prompt": "Wide chalk brush dragged firmly once across rough paper, continuous gritty scrape with strong audible friction from start to finish, close mic, dry, single gesture, no reverb, no silence",
+      "duration_seconds": 1.2,
+      "prompt_influence": 0.55
+    },
+    {
+      "file": "pen/pen-line-thin-03.wav",
+      "family": "pen",
+      "trigger": ["draw", "grow"],
+      "prompt": "Thin ink line drawn very fast across paper, light crisp short swish, dry, close mic, single stroke, no reverb",
+      "duration_seconds": 0.6,
+      "prompt_influence": 0.4
+    },
+
+    {
+      "file": "ui/ui-click-soft-01.wav",
+      "family": "ui",
+      "trigger": ["pop", "label"],
+      "prompt": "Small soft plastic button click, quiet, tight, dry, single click, no reverb, no beep, musical tone absent",
+      "duration_seconds": 0.5,
+      "prompt_influence": 0.5
+    },
+    {
+      "file": "ui/ui-pop-sticker-02.wav",
+      "family": "ui",
+      "trigger": ["pop", "pulseAt"],
+      "prompt": "Gentle muted pop like a sticker lifting off paper, very short, soft, dry, close mic, no reverb",
+      "duration_seconds": 0.5,
+      "prompt_influence": 0.45
+    },
+    {
+      "file": "ui/ui-toggle-mute-03.wav",
+      "family": "ui",
+      "trigger": ["swap", "grow"],
+      "prompt": "Small mechanical switch toggled once, tight click clack, dry, close mic, single event, no reverb",
+      "duration_seconds": 0.5,
+      "prompt_influence": 0.5
+    },
+
+    {
+      "file": "stamp/stamp-rubber-01.wav",
+      "family": "stamp",
+      "trigger": ["slam", "block", "label"],
+      "prompt": "Rubber office stamp pressed firmly onto paper on a wooden desk, dull press with a hint of ink squish, dry, close mic, single hit, no reverb",
+      "duration_seconds": 0.6,
+      "prompt_influence": 0.5
+    },
+
+    {
+      "file": "accent/accent-metal-cling-01.wav",
+      "family": "accent",
+      "trigger": ["counter", "slam"],
+      "prompt": "Small glass bell or coin struck once, clean bright single note with short natural ring, dry, close mic, no chord, no melody",
+      "duration_seconds": 1.0,
+      "prompt_influence": 0.4
+    },
+    {
+      "file": "accent/counter-tick-mech-01.wav",
+      "family": "accent",
+      "trigger": ["counter", "grow"],
+      "prompt": "Single mechanical clock tick, dry, tight, close mic, no reverb, no chime",
+      "duration_seconds": 0.5,
+      "prompt_influence": 0.5
+    },
+
+    {
+      "file": "transition/riser-soft-01.wav",
+      "family": "transition",
+      "trigger": ["breath", "climax"],
+      "prompt": "Quiet airy rising sweep building tension over two seconds, no melody, no percussion, no impact, smooth soft ending, dry",
+      "duration_seconds": 2.5,
+      "prompt_influence": 0.3,
+      "tight": false
+    },
+
+    {
+      "file": "ambience/room-tone-paper-loop-01.wav",
+      "family": "ambience",
+      "trigger": ["bed"],
+      "prompt": "Very quiet archive room tone, steady even level from start to finish, soft air with faint distant paper handling, no swells, no crescendo, no distinct events, seamless loop, dry, no music",
+      "duration_seconds": 6.0,
+      "prompt_influence": 0.3,
+      "loop": true,
+      "tight": false
+    }
+  ]
+}

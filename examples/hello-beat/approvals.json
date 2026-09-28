@@ -1,0 +1,23 @@
+{
+  "A": {
+    "approved_by": "agent",
+    "at": "2026-09-28T10:10:00Z",
+    "note": "",
+    "artifact": "style-brief.md",
+    "sha256": "16579feb2a8569d93537ca42976af63754fe87fd7ebe9bc611dca7cfbf56d450"
+  },
+  "B": {
+    "approved_by": "agent",
+    "at": "2026-09-28T10:10:01Z",
+    "note": "",
+    "artifact": "beatmap.json",
+    "sha256": "f8060ed4035754f3ef390cf94c8a883bec7f6fbe7daa40d53c71325c06a64093"
+  },
+  "C": {
+    "approved_by": "agent",
+    "at": "2026-09-28T10:11:44Z",
+    "note": "",
+    "artifact": "styleframes",
+    "sha256": "81414371287478e752a6e6f47d2bb071e39c2e02e1d013041e29e9efa1fa17a0"
+  }
+}
