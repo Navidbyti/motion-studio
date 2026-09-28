@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 (2026-09-28): Gemini TTS voice-over
+
+- **Local API keys** (`mstudio keys setup|check|status|remove`). `setup gemini` creates `~/.motion-studio/secrets/gemini_api_key.txt`, outside the repo and user-only on POSIX, and opens it in Notepad or the default editor for the user to paste into. `--wait N` waits for the save and validates it with a free models-list call. `--prompt` takes hidden terminal input instead. `GEMINI_API_KEY` overrides the file. Keys are masked in all output and scrubbed from API errors. Agents are told never to ask for keys in chat.
+- **Gemini 3.8 TTS** (`mstudio tts`, `mstudio voices`): Interactions API (`gemini-3.8-flash-tts`, or `--model lite` for `gemini-3.8-flash-lite-tts`). A `vo.md` script with per-scene `## id` segments and `> voice:` / `> style:` directions; inline vocal tags pass through. Output is `audio/vo/<id>.wav` (48 kHz, −16 LUFS), a `vo.json` manifest with a text hash per segment, and an automatic credits entry. Transient errors are retried.
+- **Voice-over in the beat map**: a `voiceover` list places each segment on a musical anchor, and `{"word": …, "segment": id}` anchors hit spoken words. The validator catches overlapping segments, segments running past the end and missing files. `apply` writes the `<audio data-vo>` elements.
+- `mstudio words` writes per-segment `audio/vo/<id>.words.json`.
+- **Privacy fix**: HyperFrames child processes never receive Gemini, HeyGen or ElevenLabs keys. HyperFrames' `snapshot` otherwise sends frames to Gemini automatically when a key is present.
+- New skill: `skills/voiceover`. `brief.json` gets voice-over defaults, and `mstudio doctor` shows key status (optional).
+
 ## 0.1.0 (2026-09-28): first build
 
 Motion Studio replaces [motion-engine](https://github.com/Navidbyti/motion-engine) (v0.68.0, now discontinued). It is rebuilt around HyperFrames (HTML + GSAP) as the only render engine, with a creative-director planning layer and beat-accurate editing.

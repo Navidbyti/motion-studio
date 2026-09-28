@@ -114,6 +114,10 @@ def find_chrome() -> str | None:
 def tool_env() -> dict[str, str]:
     """Environment for every HyperFrames / Chrome child process."""
     env = dict(os.environ)
+    # HyperFrames auto-sends snapshot frames to Gemini ("--describe") whenever a Gemini key is in its
+    # environment. Client frames must not leave the machine by accident, so it never gets our keys.
+    for secret in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "HEYGEN_API_KEY", "HYPERFRAMES_API_KEY", "ELEVENLABS_API_KEY"):
+        env.pop(secret, None)
     env.setdefault("HYPERFRAMES_NO_TELEMETRY", "1")  # client work: no usage reporting
     env.setdefault("HYPERFRAMES_SKIP_SKILLS", "1")
     env.setdefault("NODE_NO_WARNINGS", "1")

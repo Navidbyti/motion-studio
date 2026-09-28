@@ -23,7 +23,7 @@ Do not ask the user to run commands, create folders or write JSON. You own the t
 | 0 Intake | `skills/director` | `mstudio new <slug> …`, then fill `brief.json` (goal, audience, ratio, length, music, voice-over, needs) | |
 | 1 Direction | `skills/director` + `skills/house-style` | `style-brief.md`: 3 concepts, 1 recommendation, palette (a source for every color), type, background motion, one special moment | **A** |
 | 2 Script | `skills/director` | `script.md` with exact on-screen copy, then `mstudio copy <slug>` → review `copy.json` | |
-| 3 Audio | `skills/beat-editor` | `mstudio beats <slug> audio/<track>` → `audio/beats.json`; `mstudio words` if there is a voice-over | |
+| 3 Audio | `skills/beat-editor`, `skills/voiceover` | `mstudio beats <slug> audio/<track>` → `audio/beats.json`; voice-over: `mstudio keys setup gemini`, `vo.md`, `mstudio tts`, `mstudio words` | |
 | 3b Sources | `skills/data-viz`, `skills/footage` | `data/bindings.json` + `mstudio data`; `facts/claims.json` + `mstudio facts`; `mstudio footage analyze/conform` + `footage/reframe.json` | |
 | 4 Beat map | `skills/beat-editor` | `beatmap.json`; `mstudio beatmap <slug> apply` until it prints OK | **B** |
 | 5 Styleframes | `skills/builder` | build the key moments, `mstudio styleframes <slug> --events …` | **C** |
@@ -65,9 +65,10 @@ Work as four roles, as subagents where your tool supports them, otherwise as sep
 5. **One render engine: HyperFrames (HTML + GSAP).** Never Remotion, and never generative text-to-video footage. Stock only when the approved style brief names a scene that needs real imagery (see `skills/director` → stock policy).
 6. **Deterministic compositions.** No `Date.now()`, no unseeded `Math.random()`, no network, no `repeat: -1`. Fonts load from local files (`fonts/`). GSAP loads from `vendor/`, not a CDN.
 7. **Licenses.** Every file in `audio/`, `footage/`, `data/raw/`, `facts/sources/`, `assets/` and `fonts/` gets a `credits.json` entry (source, license, author). QA fails anything unlisted.
-8. **Privacy.** `projects/` is git-ignored: client briefs, real client names and client assets never go into this public repository. Work for a named client or brand (for example Billionaire Signal) stays in `projects/` or a private repo, and never in `examples/`, `benchmarks/`, issues or commit messages. HyperFrames telemetry is off (`mstudio` sets `HYPERFRAMES_NO_TELEMETRY=1`). Never use `hyperframes publish`, `cloud` or `lambda` on client material.
-9. **Log every decision** with `mstudio decide <slug> <topic> "<choice>" --why … --alternatives …`: what was chosen, what else was considered, and why.
-10. **One chat per video.** A long chat carries old decisions into new work. Start a new session for a new project.
+8. **API keys stay local.** Keys (Gemini for TTS) are collected with `mstudio keys setup <name>`, which opens a local file for the user to paste into. Never ask for a key in chat, never read the key file, never print, log or commit a key. See `skills/voiceover`.
+9. **Privacy.** `projects/` is git-ignored: client briefs, real client names and client assets never go into this public repository. Work for a named client or brand (for example Billionaire Signal) stays in `projects/` or a private repo, and never in `examples/`, `benchmarks/`, issues or commit messages. HyperFrames telemetry is off (`mstudio` sets `HYPERFRAMES_NO_TELEMETRY=1`). Never use `hyperframes publish`, `cloud` or `lambda` on client material.
+10. **Log every decision** with `mstudio decide <slug> <topic> "<choice>" --why … --alternatives …`: what was chosen, what else was considered, and why.
+11. **One chat per video.** A long chat carries old decisions into new work. Start a new session for a new project.
 
 ## 4. Creative rules
 
@@ -88,7 +89,7 @@ Hand off with the MP4 path, the QA summary, remaining warnings, facts that still
 src/motion_studio/    mstudio CLI: beats, beatmap, data, claims, footage, audio, render, qa, revise, project, doctor
 engine/inspect.mjs    headless-Chrome timeline/DOM inspector used by QA
 templates/composition index.html (thin host), scene.html, studio.js runtime helpers, house.css tokens
-skills/               director, beat-editor, builder, footage, data-viz, qa, revise, house-style
+skills/               director, beat-editor, voiceover, builder, footage, data-viz, qa, revise, house-style
 third_party/          vendored upstreams with their LICENSE files (see THIRD_PARTY_NOTICES.md)
 benchmarks/           frozen benchmark suite v1 + bench.py timer; run each case in a fresh chat
 examples/             public example projects

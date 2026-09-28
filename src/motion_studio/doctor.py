@@ -50,6 +50,9 @@ def doctor() -> list[dict[str, Any]]:
             add(mod, True, "ok")
         except ImportError:
             add(mod, False, "missing", "pip install -e .")
+    from .secrets import get_key, mask
+    key, source = get_key("gemini")
+    add("gemini key", True, f"{mask(key)} ({source})" if key else "not set (optional: voice-over; `mstudio keys setup gemini`)")
     telemetry = os.environ.get("HYPERFRAMES_NO_TELEMETRY") or "1 (set by mstudio for every HyperFrames call)"
     add("telemetry", True, f"HYPERFRAMES_NO_TELEMETRY={telemetry}")
     sfx = REPO / "third_party" / "motion-bang-bang" / "assets" / "sfx" / "library.json"
