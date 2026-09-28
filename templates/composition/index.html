@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-ratio="{{RATIO}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{W}}, height={{H}}" />
+    <link rel="stylesheet" href="./house.css" />
+    <link rel="stylesheet" href="./brand.css" />
+    <script src="./vendor/gsap.min.js"></script>
+    <script src="./timing.js"></script>
+    <script src="./data.js"></script>
+    <script src="./reframe.js"></script>
+    <script src="./studio.js"></script>
+    <style>
+      [data-composition-id="main"] > div[data-composition-src] { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{{DURATION}}" data-width="{{W}}" data-height="{{H}}">
+      <!-- scenes: one sub-composition slot per beat-map scene; `mstudio beatmap <slug> apply` creates and times them -->
+      <!-- /scenes -->
+      <!-- media: footage (<video data-media="…" muted>) and audio (<audio id="…">) live here, never inside a scene -->
+      <!-- /media -->
+    </div>
+    <script>
+      // Host timeline: footage reframing and anything that must span scenes. Scene motion lives in compositions/<scene>.html.
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

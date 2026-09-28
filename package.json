@@ -1,0 +1,15 @@
+{
+  "name": "motion-studio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Render + QA toolchain for Motion Studio (HyperFrames + GSAP, pinned)",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "hyperframes": "hyperframes"
+  },
+  "devDependencies": {
+    "gsap": "3.14.2",
+    "hyperframes": "0.8.82"
+  }
+}

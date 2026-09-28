@@ -1,0 +1,9 @@
+# Benchmark inputs are hash-pinned: store and check out byte-for-byte (no EOL conversion).
+benchmarks/B*/** -text
+benchmarks/shared/** -text
+benchmarks/manifest.json -text
+*.mp4 binary
+*.wav binary
+*.ttf binary
+*.png binary
+*.jpg binary

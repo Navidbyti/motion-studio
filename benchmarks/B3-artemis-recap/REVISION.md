@@ -1,0 +1,1 @@
+Revise only the Moon scene (script scene 5). Make the distance counter count up over 2 seconds instead of its current speed, move it to the top third of the frame, and add a thin line under it that draws from left to right. Leave the other scenes, the cut points, the total length and the audio unchanged.

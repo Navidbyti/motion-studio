@@ -1,0 +1,932 @@
+{
+ "schema_version": 1,
+ "source": {
+  "file": "music.wav",
+  "sha256": "8da7bcca19a11128da1691bfe40efee45db5486ffe9e9e77f55e2ff699fa05f9",
+  "duration": 17.5
+ },
+ "analysis": {
+  "sample_rate": 22050,
+  "hop": 256,
+  "time_resolution_ms": 11.61,
+  "attack_refinement_ms": 2,
+  "method": "flux+autocorr tempo, DP beats, waveform attack refinement"
+ },
+ "tempo": {
+  "bpm": 120.003,
+  "steady": true,
+  "timing_spread_ms": 6.21,
+  "candidates": [
+   {
+    "bpm": 120.072,
+    "score": 1.0
+   },
+   {
+    "bpm": 60.04,
+    "score": 0.192
+   },
+   {
+    "bpm": 79.943,
+    "score": 0.046
+   }
+  ],
+  "beat_period": 0.49999
+ },
+ "meter": 4,
+ "downbeat_confidence": 0.494,
+ "beat0": 0.0,
+ "first_downbeat": 0.0,
+ "beats": [
+  {
+   "i": 0,
+   "t": 0.0,
+   "bar": 0,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.002,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -4.38
+  },
+  {
+   "i": 1,
+   "t": 0.4994,
+   "bar": 0,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 0.0,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -5.43
+  },
+  {
+   "i": 2,
+   "t": 0.9994,
+   "bar": 0,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.0,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -6.88
+  },
+  {
+   "i": 3,
+   "t": 1.4994,
+   "bar": 0,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 0.0,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -8.32
+  },
+  {
+   "i": 4,
+   "t": 1.9993,
+   "bar": 1,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.421,
+   "kick": true,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -4.29
+  },
+  {
+   "i": 5,
+   "t": 2.4993,
+   "bar": 1,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 0.0,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -5.43
+  },
+  {
+   "i": 6,
+   "t": 2.9993,
+   "bar": 1,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.0,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -6.89
+  },
+  {
+   "i": 7,
+   "t": 3.4993,
+   "bar": 1,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 0.0,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 0.0,
+   "energy_db": -8.31
+  },
+  {
+   "i": 8,
+   "t": 3.9993,
+   "bar": 2,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.577,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 0.54
+  },
+  {
+   "i": 9,
+   "t": 4.4993,
+   "bar": 2,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 1.606,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -6.92
+  },
+  {
+   "i": 10,
+   "t": 4.9993,
+   "bar": 2,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.398,
+   "kick": true,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -0.31
+  },
+  {
+   "i": 11,
+   "t": 5.4992,
+   "bar": 2,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 1.793,
+   "kick": true,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -9.0
+  },
+  {
+   "i": 12,
+   "t": 5.9992,
+   "bar": 3,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.605,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 0.58
+  },
+  {
+   "i": 13,
+   "t": 6.4992,
+   "bar": 3,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 1.928,
+   "kick": true,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -6.75
+  },
+  {
+   "i": 14,
+   "t": 6.9992,
+   "bar": 3,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.445,
+   "kick": true,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -0.27
+  },
+  {
+   "i": 15,
+   "t": 7.4992,
+   "bar": 3,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 1.961,
+   "kick": true,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": -8.95
+  },
+  {
+   "i": 16,
+   "t": 7.9992,
+   "bar": 4,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.594,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 6.24
+  },
+  {
+   "i": 17,
+   "t": 8.4992,
+   "bar": 4,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 2.172,
+   "kick": true,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.71
+  },
+  {
+   "i": 18,
+   "t": 8.9992,
+   "bar": 4,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.469,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 6.09
+  },
+  {
+   "i": 19,
+   "t": 9.4991,
+   "bar": 4,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 1.716,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.45
+  },
+  {
+   "i": 20,
+   "t": 9.9991,
+   "bar": 5,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.435,
+   "kick": true,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 6.03
+  },
+  {
+   "i": 21,
+   "t": 10.4991,
+   "bar": 5,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 1.486,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.64
+  },
+  {
+   "i": 22,
+   "t": 10.9991,
+   "bar": 5,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.624,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 5.84
+  },
+  {
+   "i": 23,
+   "t": 11.4991,
+   "bar": 5,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 1.479,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 2.39
+  },
+  {
+   "i": 24,
+   "t": 11.9991,
+   "bar": 6,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.567,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 6.1
+  },
+  {
+   "i": 25,
+   "t": 12.4991,
+   "bar": 6,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 1.764,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.62
+  },
+  {
+   "i": 26,
+   "t": 12.9991,
+   "bar": 6,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.832,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 5.9
+  },
+  {
+   "i": 27,
+   "t": 13.499,
+   "bar": 6,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 2.11,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.41
+  },
+  {
+   "i": 28,
+   "t": 13.999,
+   "bar": 7,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 1.006,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 6.34
+  },
+  {
+   "i": 29,
+   "t": 14.499,
+   "bar": 7,
+   "beat_in_bar": 2,
+   "downbeat": false,
+   "strength": 2.204,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.64
+  },
+  {
+   "i": 30,
+   "t": 14.999,
+   "bar": 7,
+   "beat_in_bar": 3,
+   "downbeat": false,
+   "strength": 0.575,
+   "kick": true,
+   "snare": true,
+   "hat": false,
+   "offbeat_hats": 1,
+   "attack_confidence": 1.0,
+   "energy_db": 6.15
+  },
+  {
+   "i": 31,
+   "t": 15.499,
+   "bar": 7,
+   "beat_in_bar": 4,
+   "downbeat": false,
+   "strength": 2.145,
+   "kick": false,
+   "snare": true,
+   "hat": true,
+   "offbeat_hats": 0,
+   "attack_confidence": 1.0,
+   "energy_db": 2.24
+  },
+  {
+   "i": 32,
+   "t": 15.999,
+   "bar": 8,
+   "beat_in_bar": 1,
+   "downbeat": true,
+   "strength": 0.087,
+   "kick": false,
+   "snare": false,
+   "hat": false,
+   "offbeat_hats": 0,
+   "attack_confidence": 0.0,
+   "energy_db": -113.82
+  }
+ ],
+ "downbeats": [
+  0.0,
+  1.9993,
+  3.9993,
+  5.9992,
+  7.9992,
+  9.9991,
+  11.9991,
+  13.999,
+  15.999
+ ],
+ "bars": [
+  {
+   "i": 0,
+   "t": 0.0,
+   "energy_db": -6.25,
+   "low_db": 5.97,
+   "quiet": true,
+   "kicks": 0,
+   "snares": 0,
+   "section": 0
+  },
+  {
+   "i": 1,
+   "t": 1.9993,
+   "energy_db": -6.23,
+   "low_db": 8.85,
+   "quiet": true,
+   "kicks": 1,
+   "snares": 0,
+   "section": 0
+  },
+  {
+   "i": 2,
+   "t": 3.9993,
+   "energy_db": -3.92,
+   "low_db": 12.06,
+   "quiet": false,
+   "kicks": 3,
+   "snares": 3,
+   "section": 1
+  },
+  {
+   "i": 3,
+   "t": 5.9992,
+   "energy_db": -3.84,
+   "low_db": 10.37,
+   "quiet": false,
+   "kicks": 4,
+   "snares": 3,
+   "section": 1
+  },
+  {
+   "i": 4,
+   "t": 7.9992,
+   "energy_db": 4.38,
+   "low_db": 20.71,
+   "quiet": false,
+   "kicks": 3,
+   "snares": 4,
+   "section": 2
+  },
+  {
+   "i": 5,
+   "t": 9.9991,
+   "energy_db": 4.23,
+   "low_db": 20.68,
+   "quiet": false,
+   "kicks": 2,
+   "snares": 3,
+   "section": 2
+  },
+  {
+   "i": 6,
+   "t": 11.9991,
+   "energy_db": 4.26,
+   "low_db": 20.81,
+   "quiet": false,
+   "kicks": 2,
+   "snares": 4,
+   "section": 2
+  },
+  {
+   "i": 7,
+   "t": 13.999,
+   "energy_db": 4.33,
+   "low_db": 20.72,
+   "quiet": false,
+   "kicks": 2,
+   "snares": 4,
+   "section": 2
+  },
+  {
+   "i": 8,
+   "t": 15.999,
+   "energy_db": -117.94,
+   "low_db": -117.59,
+   "quiet": true,
+   "kicks": 0,
+   "snares": 0,
+   "section": 3
+  }
+ ],
+ "sections": [
+  {
+   "index": 0,
+   "kind": "intro",
+   "energy": "low",
+   "energy_db": -6.24,
+   "start_bar": 0,
+   "end_bar": 2,
+   "start": 0.0,
+   "end": 3.9993
+  },
+  {
+   "index": 1,
+   "kind": "section",
+   "energy": "mid",
+   "energy_db": -3.88,
+   "start_bar": 2,
+   "end_bar": 4,
+   "start": 3.9993,
+   "end": 7.9992
+  },
+  {
+   "index": 2,
+   "kind": "drop",
+   "energy": "high",
+   "energy_db": 4.29,
+   "start_bar": 4,
+   "end_bar": 8,
+   "start": 7.9992,
+   "end": 15.999
+  },
+  {
+   "index": 3,
+   "kind": "outro",
+   "energy": "low",
+   "energy_db": -117.94,
+   "start_bar": 8,
+   "end_bar": 9,
+   "start": 15.999,
+   "end": 17.5
+  }
+ ],
+ "drops": [
+  7.9992
+ ],
+ "onsets": {
+  "kick": [
+   1.9853,
+   3.9822,
+   4.4931,
+   4.9923,
+   5.4915,
+   5.9907,
+   6.3855,
+   6.49,
+   6.9892,
+   7.3956,
+   7.4884,
+   7.9877,
+   8.4869,
+   8.9861,
+   9.497,
+   9.9962,
+   10.4838,
+   10.9946,
+   11.4939,
+   11.9931,
+   12.5039,
+   12.9916,
+   13.4908,
+   13.99,
+   14.4893,
+   14.9885,
+   15.4993
+  ],
+  "snare": [
+   0.743,
+   1.9969,
+   3.9938,
+   4.3886,
+   4.4931,
+   4.9923,
+   5.387,
+   5.4915,
+   5.9907,
+   6.3971,
+   6.49,
+   6.9892,
+   7.3956,
+   7.4884,
+   7.9877,
+   8.394,
+   8.4869,
+   8.9861,
+   9.2415,
+   9.3925,
+   9.4854,
+   9.9962,
+   10.3909,
+   10.4954,
+   10.9946,
+   11.2385,
+   11.3894,
+   11.4939,
+   11.9931,
+   12.3878,
+   12.4923,
+   12.9916,
+   13.3863,
+   13.4908,
+   13.99,
+   14.2454,
+   14.3964,
+   14.4893,
+   14.9885,
+   15.3948,
+   15.4877
+  ],
+  "hat": [
+   0.2438,
+   0.743,
+   1.2423,
+   1.7415,
+   2.2407,
+   2.74,
+   3.2392,
+   3.7384,
+   4.2376,
+   4.4931,
+   4.7485,
+   5.2361,
+   5.4915,
+   5.7469,
+   6.2462,
+   6.49,
+   6.7454,
+   7.2446,
+   7.4884,
+   8.2431,
+   8.4869,
+   9.2415,
+   9.4854,
+   10.24,
+   10.4838,
+   10.9946,
+   11.2385,
+   11.4939,
+   12.2369,
+   12.4923,
+   12.9916,
+   13.2354,
+   13.4908,
+   13.99,
+   14.2454,
+   14.4893,
+   15.2439,
+   15.4877
+  ]
+ },
+ "hits": [
+  {
+   "t": 0.0,
+   "tier": "big",
+   "event": "downbeat"
+  },
+  {
+   "t": 0.4994,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 0.9994,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 1.4994,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 1.9993,
+   "tier": "big",
+   "event": "downbeat"
+  },
+  {
+   "t": 2.4993,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 2.9993,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 3.4993,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 3.9993,
+   "tier": "scene",
+   "event": "section"
+  },
+  {
+   "t": 4.4993,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 4.9993,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 5.4992,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 5.9992,
+   "tier": "big",
+   "event": "downbeat"
+  },
+  {
+   "t": 6.4992,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 6.9992,
+   "tier": "entrance",
+   "event": "beat"
+  },
+  {
+   "t": 7.4992,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 7.9992,
+   "tier": "scene",
+   "event": "drop"
+  },
+  {
+   "t": 8.4992,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 8.9992,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 9.4991,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 9.9991,
+   "tier": "big",
+   "event": "downbeat"
+  },
+  {
+   "t": 10.4991,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 10.9991,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 11.4991,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 11.9991,
+   "tier": "big",
+   "event": "downbeat"
+  },
+  {
+   "t": 12.4991,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 12.9991,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 13.499,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 13.999,
+   "tier": "big",
+   "event": "downbeat"
+  },
+  {
+   "t": 14.499,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 14.999,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 15.499,
+   "tier": "punch",
+   "event": "snare"
+  },
+  {
+   "t": 15.999,
+   "tier": "scene",
+   "event": "section"
+  }
+ ]
+}

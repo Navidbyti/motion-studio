@@ -1,0 +1,3 @@
+Create a 45-second vertical data-driven motion graphic (1080×1920, 30 fps): "CO₂ and global temperature since 1960".
+
+Use `script.md` for the exact on-screen text and scene order. Take every number from the frozen data in `data/` only: the raw NASA and NOAA snapshots, the derived chart tables and `data/expected-values.json`. Do not fetch newer data. Charts must be exact and readable: a CO₂ line chart, a temperature-anomaly line chart with the 1951–1980 baseline marked, a decade bar chart, a top-3 ranking and animated counters. Label units and show the sources on screen. No voiceover. For sound, use only the music bed and sound effects in `benchmarks/shared/audio/`. Aim for a sober, editorial data-journalism style.

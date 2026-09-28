@@ -1,0 +1,52 @@
+Source: GPS.gov - GPS Accuracy
+URL: https://www.gps.gov/gps-accuracy
+Publisher: U.S. government (public domain)
+Retrieved: 2026-09-28
+Note: plain-text extraction of the page's main content, frozen for the benchmark. Do not refetch during a run.
+
+GPS Accuracy
+To achieve the highest level of accuracy, most survey-grade receivers use two GPS radio frequencies: L1 and L2. Currently, there is no fully functional civilian signal at L2, so these receivers leverage a military L2 signal using "codeless" techniques.
+The ongoing GPS modernization program is adding a dedicated civil signal at L2 that supports high-accuracy positioning without the use of military signals. The GPS program is also adding a third civil signal at the L5 frequency that will enhance performance even further.
+Since 2020, the government no longer supports codeless access to military GPS signals.
+GPS Accuracy FAQs
+How Accurate is GPS?
+It depends. GPS satellites broadcast their signals in space with a certain accuracy, but what you receive depends on additional factors, including satellite geometry, signal blockage, atmospheric conditions, and receiver design features/quality.
+For example, GPS-enabled smartphones are typically accurate to within a 4.9 m (16 ft.) radius under open sky ( view source at ION.org ). However, their accuracy worsens near buildings, bridges, and trees.
+High-end users boost GPS accuracy with dual-frequency receivers and/or augmentation systems. These can enable real-time positioning within a few centimeters, and long-term measurements at the millimeter level.
+Why Does GPS Sometimes Show Me in the Wrong Place?
+Many things can degrade GPS positioning accuracy. Common causes include:
+Satellite signal blockage due to buildings, bridges, trees, etc.
+Indoor or underground use
+Signals reflected off buildings or walls ("multipath")
+Cartoon of GPS signals being blocked and reflected by buildings
+Far less common causes may include:
+Radio interference or jamming
+Major solar storms
+Satellite maintenance/maneuvers creating temporary gaps in coverage
+Improperly designed devices that do not comply with GPS Interface Specifications
+In many cases, a device's GPS hardware is working fine, but its mapping software is faulty. For example, users are often misled by:
+Incorrectly drawn maps
+Mislabeled businesses and other points of interest
+Missing roads, buildings, communities, etc.
+Incorrectly estimated street addresses
+The U.S. government cannot correct mapping errors in consumer devices. To report a mapping error on a consumer device, see our helpful guide.
+For help with GPS problems that are not mapping errors, please visit our GPS Service Outages & Status Reports page .
+What is the Government's Commitment to GPS Accuracy?
+The government is committed to providing GPS at the accuracy levels specified in the GPS Standard Positioning Service (SPS) Performance Standard .
+The accuracy commitments do not apply to GPS devices, but rather to the signals transmitted in space. For example, the government commits to broadcasting the GPS signal in space with a daily global average user range error (URE) of ≤2.0 m (6.6 ft.), with 95% probability, across all healthy satellites in constellation slots. Actual performance is typically much better. On April 20, 2021, the global average URE across all satellites was ≤0.643 m (2.1 ft.), 95% of the time.
+To be clear, URE is not user accuracy. User accuracy depends on a combination of satellite geometry, URE, and local factors such as signal blockage, atmospheric conditions, and receiver design features/quality.
+The ongoing GPS modernization program will further improve accuracy for civilian and military users.
+How Accurate is GPS for Speed Measurement?
+As with positioning, the speed accuracy of GPS depends on many factors.
+The government provides the GPS signal in space with a global average user range rate error (URRE) of ≤0.006 m/sec over any 3-second interval, with 95% probability.
+This measure must be combined with other factors outside the government's control, including satellite geometry, signal blockage, atmospheric conditions, and receiver design features/quality, to calculate a particular receiver's speed accuracy.
+How Accurate is GPS for Timing?
+GPS time transfer is a common method for synchronizing clocks and networks to Coordinated Universal Time (UTC). The government distributes UTC as maintained by the U.S. Naval Observatory (USNO) via the GPS signal in space with a time transfer accuracy relative to UTC(USNO) of ≤30 nanoseconds (billionths of a second), 95% of the time. This performance standard assumes the use of a specialized time transfer receiver at a fixed location.
+Is Military GPS More Accurate Than Civilian GPS?
+Using two GPS frequencies improves accuracy by correcting signal distortions caused by Earth's atmosphere. Dual-frequency GPS equipment is commercially available for civilian use, but its cost and size has limited it to professional applications.
+With augmentation systems , civilian users can actually receive better GPS accuracy than the military.
+Doesn't the Government Degrade Civilian GPS Accuracy?
+No.
+During the 1990s, GPS employed a feature called Selective Availability that intentionally degraded civilian accuracy on a global basis.
+In May 2000, at the direction of President Bill Clinton, the U.S. government ended its use of Selective Availability in order to make GPS more responsive to civil and commercial users worldwide.
+The United States has no intent to ever use Selective Availability again.

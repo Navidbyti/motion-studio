@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "source_sha256": "f8060ed4035754f3ef390cf94c8a883bec7f6fbe7daa40d53c71325c06a64093",
+  "fps": 30.0,
+  "duration_frames": 480,
+  "duration": 16.0,
+  "music": {
+    "file": "audio/music.wav",
+    "beats": "audio/beats.json",
+    "start_at": 0,
+    "offset": 0
+  },
+  "rules": {
+    "anticipation_frames": {
+      "scene": 0,
+      "big": 3,
+      "punch": 2,
+      "entrance": 4,
+      "micro": 1,
+      "hold": 0,
+      "word": 2
+    },
+    "max_big_hits_per_bar": 1,
+    "max_events_per_bar": 6,
+    "min_scene_beats": 2,
+    "min_hold_frames": 12
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "start": 0.0,
+      "start_kind": "downbeat",
+      "end": 3.9993,
+      "purpose": "hook",
+      "transition_in": null,
+      "overlap_frames": 0,
+      "start_frame": 0,
+      "end_frame": 120,
+      "enter_frame": 0,
+      "duration_frames": 120
+    },
+    {
+      "id": "s2",
+      "start": 3.9993,
+      "start_kind": "downbeat",
+      "end": 7.9992,
+      "purpose": "build",
+      "transition_in": null,
+      "overlap_frames": 0,
+      "start_frame": 120,
+      "end_frame": 240,
+      "enter_frame": 120,
+      "duration_frames": 120
+    },
+    {
+      "id": "s3",
+      "start": 7.9992,
+      "start_kind": "drop",
+      "end": 16.0,
+      "purpose": "payoff",
+      "transition_in": null,
+      "overlap_frames": 0,
+      "start_frame": 240,
+      "end_frame": 480,
+      "enter_frame": 240,
+      "duration_frames": 240
+    }
+  ],
+  "events": {
+    "s1.hello": {
+      "scene": "s1",
+      "tier": "big",
+      "kind": "slam",
+      "anchor": "downbeat",
+      "impact_frame": 0,
+      "start_frame": 0,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    },
+    "s1.beat": {
+      "scene": "s1",
+      "tier": "entrance",
+      "kind": "entrance",
+      "anchor": "beat",
+      "impact_frame": 30,
+      "start_frame": 26,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    },
+    "s1.hold": {
+      "scene": "s1",
+      "tier": "hold",
+      "kind": "hold",
+      "anchor": "beat",
+      "impact_frame": 60,
+      "start_frame": 60,
+      "until_frame": 120,
+      "target": null,
+      "note": ""
+    },
+    "s2.open": {
+      "scene": "s2",
+      "tier": "big",
+      "kind": "wipe",
+      "anchor": "downbeat",
+      "impact_frame": 120,
+      "start_frame": 120,
+      "until_frame": null,
+      "target": null,
+      "note": "",
+      "on_cut": true
+    },
+    "s2.every": {
+      "scene": "s2",
+      "tier": "punch",
+      "kind": "punch",
+      "anchor": "snare",
+      "impact_frame": 120,
+      "start_frame": 120,
+      "until_frame": null,
+      "target": null,
+      "note": "",
+      "on_cut": true
+    },
+    "s2.hit": {
+      "scene": "s2",
+      "tier": "punch",
+      "kind": "punch",
+      "anchor": "snare",
+      "impact_frame": 135,
+      "start_frame": 133,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    },
+    "s3.flood": {
+      "scene": "s3",
+      "tier": "scene",
+      "kind": "flood",
+      "anchor": "drop",
+      "impact_frame": 240,
+      "start_frame": 240,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    },
+    "s3.lands": {
+      "scene": "s3",
+      "tier": "big",
+      "kind": "slam",
+      "anchor": "downbeat",
+      "impact_frame": 300,
+      "start_frame": 297,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    },
+    "s3.count": {
+      "scene": "s3",
+      "tier": "entrance",
+      "kind": "entrance",
+      "anchor": "downbeat",
+      "impact_frame": 360,
+      "start_frame": 356,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    },
+    "s3.count_land": {
+      "scene": "s3",
+      "tier": "big",
+      "kind": "big",
+      "anchor": "downbeat",
+      "impact_frame": 420,
+      "start_frame": 417,
+      "until_frame": null,
+      "target": null,
+      "note": ""
+    }
+  },
+  "media": {},
+  "issues": [],
+  "ok": true
+}

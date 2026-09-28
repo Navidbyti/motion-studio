@@ -1,0 +1,161 @@
+Source: NASA - Artemis I mission page
+URL: https://www.nasa.gov/mission/artemis-i/
+Publisher: U.S. government (public domain)
+Retrieved: 2026-09-28
+Note: plain-text extraction of the page's main content, frozen for the benchmark. Do not refetch during a run.
+
+Artemis
+Artemis I
+Occurred 4 years ago
+Artemis I was NASA's first flight test of rocket, spacecraft, and supporting ground systems for the agency's Artemis program - NASA's initiative to return humans to the Moon.
+Mission Type
+Uncrewed lunar flight test
+Mission duration
+25 days, 10 hours, 53 minutes
+Launch
+Nov. 16, 2022
+Splashdown
+Dec. 11, 2022
+NASA's SLS (Space Launch System) rocket carrying the Orion spacecraft launches on the Artemis I flight test on Nov. 16, 2022, from Launch Complex 39B at NASA's Kennedy Space Center in Florida.
+NASA/Bill Ingalls
+What was Artemis I?
+Artemis I was NASA's first flight test of rocket, spacecraft, and supporting ground systems for the agency's Artemis program - NASA's initiative to return humans to the Moon. In late 2022, the uncrewed Artemis I mission launched from Kennedy Space Center in Florida, orbited thousands of miles beyond the Moon, then returned to Earth. The success of this mission led to Artemis II , which successfully sent four astronauts around the Moon in 2026. The Artemis III mission in 2027 will test rendezvous and docking capabilities with human lander test articles in low Earth orbit before NASA returns humans to the Moon's surface in 2028.
+Through Artemis missions, NASA will return humans to the Moon, unlock scientific discoveries, and prepare for the first crewed missions to Mars.
+Artemis I was the first integrated flight test of NASA's deep space exploration systems: the SLS (Space Launch System) rocket, Orion spacecraft, and Exploration Ground Systems.
+During the 25.5-day Artemis I mission , Orion traveled 268,563 miles from Earth and 43,471 miles beyond the far side of the Moon, demonstrating the performance of both Orion and the SLS rocket on their maiden flight, and gathering important engineering data.
+Artemis is built upon the success of NASA's human spaceflight programs, including the Apollo Program , in which seven missions between 1969 and 1972 landed humans on the Moon. Apollo missions were relatively short missions, with crews spending up to two days on the Moon. Through Artemis, NASA is building the capabilities for longer missions in the Moon's south polar region where the agency is leading the effort to build a Moon Base .
+When did Artemis I take place?
+The Artemis I mission launched from Launch Pad 39B at Kennedy Space Center in Florida at 1:47 a.m. EST on Nov. 16, 2022. Artemis I flew thousands of miles beyond and around the Moon and splashed down to Earth off the coast of San Diego at 12:40 p.m. EST on Dec. 11, 2022. The total mission duration was 25 days, 10 hours, and 53 minutes.
+Was Artemis I successful?
+Yes! Artemis I was extremely successful, and helped set the stage for NASA's plans to return humans to the Moon in 2028.
+During Artemis I, NASA's SLS (Space Launch System) rocket met or exceeded many of its required parameters to an accuracy of tenths or hundredths of a percent, validating its design and proving it ready to support future crewed missions.. The near-perfect flight of the SLS rocket verified that it was ready to support its first crew aboard Artemis II.
+Orion accomplished 161 test objectives to fully demonstrate every aspect of the spacecraft, including 20 objectives added mid-flight. Data shows the European-built service module generated 20% more power than initial expectations and consumed about 25% less power than predicted. Analysis of unexpected char loss on the heat shield fed forward to Artemis II and the first crew to fly on an Artemis mission, and enhancements are being made to future Orion heat shields.
+Why was Artemis I important?
+The Artemis I mission confirmed that NASA's deep exploration systems - including the SLS (Space Launch System) rocket, the Orion spacecraft, and the Exploration Ground Systems responsible for launch and recovery - could safely fly astronauts on future missions, starting with Artemis II. The flight test provided key learnings that engineers continue to apply to future Artemis missions, including missions to send astronauts to the South Pole region of the Moon.
+Artemis I Launch
+56 Images
+Go To Gallery
+Go To Gallery
+Space Launch System
+Orion Spacecraft
+Exploration Ground Systems
+SLS (Space Launch System) Rocket
+NASA's Artemis rocket is the SLS (Space Launch System), a super heavy-lift rocket that uses solid rocket boosters derived from the space shuttle and liquid-fueled engines attached to a new central core stage. SLS provides the power needed to lift the Orion spacecraft off Earth and send it into deep space.
+Learn More
+NASA's SLS (Space Launch System) rocket, with the Orion spacecraft aboard, is seen atop the mobile launcher at Launch Pad 39B at Kennedy Space Center in Florida on Aug. 30, 2022.
+NASA/Eric Bordelon
+Orion Spacecraft
+The Orion spacecraft is specifically designed to carry astronauts on deep space exploration missions farther than ever before. To keep the crew and spacecraft safe, Orion incorporates a comprehensive suite of advanced systems-including environmental control and life support, navigation and communications technologies, radiation protection, and the world's largest heat shield-designed to withstand the extreme conditions of deep space and ensure astronauts return safely home.
+Learn More
+Taken on the fifth day of the Artemis I mission, Nov. 20, 2022, this photo showing the Orion spacecraft with the Moon beyond was captured by a camera on the tip of one of Orion's solar arrays.
+NASA
+Exploration Ground Systems
+Exploration Ground Systems, based at NASA's Kennedy Space Center in Florida, develops and operates the systems and facilities needed to process, launch, and recover rockets and spacecraft for NASA's Artemis missions.
+Learn More
+NASA's Crawler Transporter-2 (CT-2) is pictured outside Launch Pad 39B at Kennedy Space Center in Florida as teams prepare the systems needed to roll the agency's SLS (Space Launch System) rocket and Orion spacecraft back to the Vehicle Assembly Building on Sept. 24, 2022.
+NASA/Joel Kowsky
+Artemis I In-Flight
+51 Images
+Go To Gallery
+Go To Gallery
+Purposeful Passengers
+Radiation Measurements
+CubeSats
+Space Biology Experiments
+Send Your Name
+Callisto
+Purposeful Passengers
+Commander Moonikin Campos-an instrumented manikin wearing the Orion Crew Survival System spacesuit-sat in the commander's seat inside Orion, equipped with sensors to measure vibration, acceleration, and radiation during flight. Campos was named by the public in honor of Arturo Campos, an electrical engineer whose work helped save the Apollo 13 crew. Two additional manikin torsos, Helga and Zohar, flew aboard Orion as part of the Matroshka AstroRad Radiation Experiment. Zohar wore an AstroRad protective vest, while Helga did not-allowing the investigation, conducted in collaboration with the German Aerospace Center, to better understand how deep-space radiation may affect future astronauts.
+Learn More
+A close-up view of Moonikin "Campos" secured in a seat inside the Orion crew module atop the Space Launch System rocket in High Bay 3 of the Vehicle Assembly Building at NASA's Kennedy Space Center in Florida on Aug. 3, 2022.
+NASA/Frank Michaux
+Radiation Measurements
+NASA's Orion spacecraft is built to keep astronauts safe on deep space missions, shielding them from the harsh environment beyond Earth. During the uncrewed Artemis I flight, researchers from NASA, along with several collaborators, sent radiation-measuring payloads aboard Orion to better understand the exposure astronauts might face. Over the spacecraft's 25.5-day journey around the Moon and back, Orion collected data using 5,600 passive sensors and 34 active radiation detectors. These measurements, including those taken as Orion passed through Earth's Van Allen radiation belts, provided important insights into the radiation levels inside the spacecraft.
+Learn More
+Two manikins were placed in the passenger seats of the Artemis I Orion crew module atop the SLS (Space Launch System) rocket in High Bay 3 of the Vehicle Assembly Building at Kennedy Space Center in Florida on Aug. 8, 2022. They were part of the Matroshka AstroRad Radiation Experiment, which studies radiation exposure in deep space.
+NASA/Frank Michaux
+CubeSats
+The SLS (Space Launch System) rocket's payload capacity, along with the unused volume inside the Orion stage adapter, created a unique opportunity to send small, low-cost science and technology experiments into deep space. These secondary payloads, called CubeSats, are only about the size of a shoebox but carry investigations and technology demonstrations that could advance future human exploration beyond Earth. The CubeSats were developed through collaborations among universities, NASA centers, commercial partners, and international space agencies.
+Learn More
+In July 2021, teams carried out the final processing steps for the science and technology payloads flying aboard Artemis I.
+NASA/Cory Huston
+Space Biology Experiments
+Four space biology investigations were carried inside a dedicated container in the Orion crew compartment throughout the mission, traveling with the spacecraft as it passed through the Van Allen Belts on its journey to the Moon and again on its return to Earth. These experiments examined how radiation affects DNA and explored ways to protect biological systems during lunar missions, where radiation levels are roughly twice those experienced aboard the International Space Station.
+Learn More
+Scientists prepare a portion of NASA's Biology Experiment-1 (BioExpt-1) for official handoff to the Orion team for Artemis I inside the Space Station Processing Facility at Kennedy Space Center in Florida on Aug. 18, 2022.
+NASA/Frank Michaux
+Send Your Name
+The Artemis I mission offered the opportunity for the public to fly their names around the Moon through the Send Your Name campaign. 3.4 million names were downloaded to a flash drive that flew inside of the Orion spacecraft. The flash drive was stowed inside the pocket of Commander Moonikin Campos, the manikin that flew aboard the mission in the commander's seat.
+Learn More
+Teams conduct final inspections of Moonikin "Campos" on Nov. 9, 2021, inside the Space Station Processing Facility at Kennedy Space Center in Florida.
+NASA/Ben Smegelsky
+Callisto
+Callisto is a technology demonstration developed through a reimbursable space act agreement with Lockheed Martin. Lockheed Martin partnered with Amazon and Cisco to bring the Alexa digital assistant and Webex video collaboration aboard Orion's first flight test in deep space.
+Learn More
+Callisto, Lockheed Martin's technology demonstration in collaboration with Amazon and Cisco, is shown inside of Orion on Nov. 24, 2022, testing voice-activated and video technology that may assist future astronauts on deep space missions.
+NASA
+News & Articles
+NASA Sets Coverage of Orion's Historic Moon Mission Return, Splashdown
+4 min read
+News Release
+NASA Invites Media to View Arrival of USS Portland, Artemis I Orion Capsule
+2 min read
+News Release
+Liftoff! NASA's Artemis I Mega Rocket Launches Orion to Moon
+5 min read
+News Release
+Artemis I Splashdown
+30 Images
+Go To Gallery
+Go To Gallery
+Keep Exploring
+Discover More
+Artemis
+Moon Base
+Humans In Space
+Destinations
+National Aeronautics and Space Administration
+NASA explores the unknown in air and space, innovates for the benefit of humanity, and inspires the world through discovery.
+About NASA's Mission
+Join Us
+Home
+News & Events
+Multimedia
+NASA+
+Missions
+Humans in Space
+Earth
+The Solar System
+The Universe
+Science
+Aeronautics
+Technology
+Learning Resources
+About NASA
+NASA en Español (opens in new tab)
+Follow NASA
+More NASA Social Accounts
+NASA Newsletters
+Sitemap
+For Media
+Privacy Policy
+FOIA
+No FEAR Act
+Office of the IG (opens in new tab)
+Budget & Annual Reports
+Agency Financial Reports
+Contact NASA
+Accessibility
+Page Last Updated:
+Sep 23, 2026
+Page Editor:
+Dacia Massengill
+Responsible NASA Official:
+Abigail Bowman
+Was this page helpful?
+Δ
+Was this page helpful?
+Yes
+No
+Submit
+×
