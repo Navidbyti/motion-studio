@@ -1,0 +1,188 @@
+{
+  "run_id": "20260928T1041Z_B1_v0.1.0",
+  "suite_version": "1",
+  "benchmark": "B1",
+  "benchmark_title": "30-second explainer from a short prompt",
+  "build": {
+    "product": "motion-studio",
+    "version": "0.1.0",
+    "installed_cli_version": "0.63.1",
+    "commit": "137869bf407bb79ae034379f66e0e511d2babd31",
+    "dirty_worktree": false
+  },
+  "agent": {
+    "product": "Claude Code (desktop app)",
+    "model": "claude-opus-5-5",
+    "effort": null
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "python": "3.13.2",
+    "ffmpeg": "ffmpeg version 9.0.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "inputs_verified": true,
+  "prompt": {
+    "file": "B1-gps-explainer/PROMPT.md",
+    "sha256": "30863d0b18a14cc21f8217ddb829b7c5f8a800145b4c9b71b4c2ef00c0f6a5b6",
+    "text": "Make a 30-second vertical motion-graphics explainer (1080×1920, 30 fps) on how GPS finds your phone.\n\nUse `script.md` for the exact on-screen text and `sources/` for the facts. No voiceover. For sound, use only the music bed and sound effects in `benchmarks/shared/audio/`. Go for a clean, modern, flat style with animated diagrams.\n"
+  },
+  "revision_prompt": {
+    "file": "B1-gps-explainer/REVISION.md",
+    "sha256": "1cbf3b1ba8c7c1c9f5a6a35baa7a3568b61de843c6f58f45cf56980291c135b9",
+    "text": "Revise only the trilateration scene (script scene 5). Make its satellite and sphere diagram 20% larger, change that scene's accent color to #00C2A8, and change its first line to the exact text \"One signal: you're somewhere on this sphere.\" Leave every other scene, the total length and the audio unchanged.\n"
+  },
+  "expected": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration_s": 30.0,
+    "duration_tolerance_s": 0.5,
+    "audio": true
+  },
+  "timeline": {
+    "session_start": "2026-09-28T10:39:07Z",
+    "start": "2026-09-28T10:41:26Z",
+    "draft-delivered": "2026-09-28T11:06:59Z",
+    "revision-start": "2026-09-28T11:06:59Z",
+    "revision-delivered": "2026-09-28T11:09:52Z",
+    "finish": "2026-09-28T11:12:05Z"
+  },
+  "questions_to_user": [],
+  "assumptions": [
+    "Scene cuts sit on bar lines or on beat 3 (backbeat): 0/2.4/7.2/10.8/15.6/22.8/26.4 s. All-downbeat cuts would have left the accuracy scene only 2.4 s. The hook is one bar (2.4 s); its copy min_seconds is set to 2.2 and the floor for all other lines is 1.5 s.",
+    "The music fade is done by a derived file (trim 0-30 s, 0.3 s fade-in, 2.4 s fade-out), because the pipeline has no fade control and the audio README says to trim and fade to fit.",
+    "The 31 / 20,200 / 4.9 numbers are animated counters (script visual intent), so intermediate values show while counting; 16 ft is static copy.",
+    "Revision: 'that scene's accent color' = the trilateration scene's accent (first sphere, candidate dots, pin, burst), now #00C2A8. Signal lines (house teal) and the clock (yellow) are unchanged. '20% larger' = the whole satellite+sphere diagram scaled 1.2x about its origin; the text is unchanged."
+  ],
+  "outputs": {
+    "draft": {
+      "local_path": "C:\\Users\\Rumi\\AppData\\Local\\Temp\\claude\\D--Hoteldebit-Motion-gen-bench-test\\4ed98af3-1bfa-44de-85cb-b9ea686ea265\\scratchpad\\gps-renders\\delivery\\gps-explainer_9x16_v1.mp4",
+      "sha256": "9a86fdb04d833a7ff5ac3eba3e48f43ee8aa5c175eeeabf22910191223a27c90",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration_s": 30.0,
+      "video_codec": "h264",
+      "audio": true,
+      "bytes": 10390366,
+      "integrated_lufs": -14.0,
+      "true_peak_dbtp": -1.5,
+      "black_segments": 0,
+      "freeze_segments": 2,
+      "auto_checks": [
+        {
+          "item": "resolution",
+          "pass": true,
+          "evidence": "1080x1920"
+        },
+        {
+          "item": "fps",
+          "pass": true,
+          "evidence": "30.0"
+        },
+        {
+          "item": "duration",
+          "pass": true,
+          "evidence": "30.0 s"
+        },
+        {
+          "item": "audio stream",
+          "pass": true,
+          "evidence": "True"
+        },
+        {
+          "item": "true peak <= -1 dBTP",
+          "pass": true,
+          "evidence": "-1.5 dBTP"
+        }
+      ],
+      "proxy": "draft-proxy-540x960.mp4",
+      "contact_sheet": "draft-contact-1fps.jpg"
+    },
+    "revised": {
+      "local_path": "C:\\Users\\Rumi\\AppData\\Local\\Temp\\claude\\D--Hoteldebit-Motion-gen-bench-test\\4ed98af3-1bfa-44de-85cb-b9ea686ea265\\scratchpad\\gps-renders\\delivery\\gps-explainer_9x16_v2.mp4",
+      "sha256": "6c178d2be74e1982654f80aa3b68ba7d3eeabfd3a192ef2766582d274c5edf76",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration_s": 30.0,
+      "video_codec": "h264",
+      "audio": true,
+      "bytes": 10491698,
+      "integrated_lufs": -14.0,
+      "true_peak_dbtp": -1.5,
+      "black_segments": 0,
+      "freeze_segments": 2,
+      "auto_checks": [
+        {
+          "item": "resolution",
+          "pass": true,
+          "evidence": "1080x1920"
+        },
+        {
+          "item": "fps",
+          "pass": true,
+          "evidence": "30.0"
+        },
+        {
+          "item": "duration",
+          "pass": true,
+          "evidence": "30.0 s"
+        },
+        {
+          "item": "audio stream",
+          "pass": true,
+          "evidence": "True"
+        },
+        {
+          "item": "true peak <= -1 dBTP",
+          "pass": true,
+          "evidence": "-1.5 dBTP"
+        }
+      ],
+      "proxy": "revised-proxy-540x960.mp4",
+      "contact_sheet": "revised-contact-1fps.jpg"
+    }
+  },
+  "agent_checks": [
+    {
+      "item": "Every line in script.md appears exactly once, spelled exactly, fully readable (not clipped, not covered, on screen >= 1.5 s)",
+      "pass": true,
+      "evidence": "Headless inspector (engine/inspect.mjs, every 3rd frame) on draft v1 and revised v2, joined visible text (opacity >= 0.5): each of the 15 lines is found in exactly 1 continuous run. Shortest runs: 'about 20,200 km up' frames 162-213 (1.8 s), 'How does your phone know where you are?' 0-69 (2.4 s), 'its exact position' 252-321 (2.4 s), 'A fourth satellite corrects your phone's clock' 612-681 (2.4 s), 'within 4.9 m (16 ft)' 717-789 (2.5 s), 'Source: GPS.gov' 825-897 (2.5 s); all others 3.0-4.8 s. mstudio qa copy check 15/15, 0 too brief, text_size >= 30 px and safe_area pass on both versions. Checked visually in the MP4 contact sheets and in full frames at 2.3/7.1/10.6/15.5/19.3/22.7/26.3/29.95 s. In v2 the scene 5 first line is the requested 'One signal: you're somewhere on this sphere.' (frames 468-573)."
+    },
+    {
+      "item": "No on-screen text or numbers that are not in script.md",
+      "pass": true,
+      "evidence": "Inspector: every text block across 300 samples per version is a substring of a script line; the diagrams carry no labels, digits or glyphs. Caveat: the three animated counters show intermediate values while counting up (e.g. '13 GPS satellites orbit Earth' at about 3.0 s, 'about 12,xxx km up' during 4.8-5.4 s, 'within 3.0 m (16 ft)' during 23.3-24.0 s). This follows the script's visual intent (animated counters), and every counter lands exactly on the scripted value (mstudio qa numbers pass: counters end on bound display strings)."
+    },
+    {
+      "item": "Scene 5 visibly shows the step from one sphere to an intersection of several",
+      "pass": true,
+      "evidence": "Draft and revised: at 16.4 s (frame 492) one satellite with one sphere and three candidate positions sliding along it; at 17.0 s (frame 510) a second sphere; from 18.0 s (frame 540) a third sphere grows; at 19.2 s (frame 576, bar 8 downbeat) the three spheres meet at one point, the pin slams in with a burst and three radius lines draw from the satellites to it; at 20.4 s (frame 612) a fourth satellite plus clock. Seen in the styleframes (frame-04-at-17s, frame-05-at-19.4s) and the master contact sheet."
+    },
+    {
+      "item": "Only the shared music and SFX files are used; the music fades in and out, with no clipping (true peak <= -1 dBTP)",
+      "pass": true,
+      "evidence": "Music: audio/music-30s-faded.wav, derived only from benchmarks/shared/audio/music-bed-100bpm-48s.wav (trim 0-30 s, 0.3 s fade-in, 2.4 s fade-out from 27.6 s). SFX cue sheet (renders/sfx-cues.json) uses only audio/sfx/sfx-{pop,tick,whoosh-short,riser,impact}.wav, copied byte-identical from benchmarks/shared/audio; auto_sfx is off, so no built-in library. Measured on the master: mean level -32.9 dB at 0.0 s, -17.1 dB at 1.0 s (fade-in), -18.4 dB at 28.8 s, -34.4 dB at 29.5 s, -47.4 dB at 29.85 s (fade-out). ffmpeg ebur128 on both versions: I = -14.0 LUFS, true peak -1.5 dBTP."
+    },
+    {
+      "item": "No blank, black or frozen frames outside intended holds",
+      "pass": false,
+      "evidence": "blackdetect (d=0.1, pix_th=0.05): no black segments in either version. freezedetect (ffmpeg defaults n=-60 dB, d=1 s) flags 2 near-static stretches in both: 24.13-25.23 s (after the 4.9 m counter lands; mostly the declared hold acc.hold 24.6-25.8 s) and 12.07-13.17 s in the distance scene, between the signal's arrival (12.0 s) and the measure bracket (13.2 s). The second is NOT a declared hold: only the sub-pixel grid drift moves. mstudio qa black_freeze passed (0 frozen stretches) because its threshold is less strict, so I record this as a failure."
+    },
+    {
+      "item": "Revision: only scene 5 changed. Other scenes are frame-identical (or hash-identical modules) to the draft.",
+      "pass": true,
+      "evidence": "Module hashes: compositions/{hook,constellation,broadcast,distance,accuracy,endcard}.html and index.html, timing.js, brand.css, data.js and beatmap.json are SHA-256 identical between versions/v1 and v2; only compositions/trilateration.html changed. Audio stream MD5 is identical (0a89088a...). mstudio revise verify: 212 changed frames, all inside the trilateration window [468, 684). Caveat: the decoded frames outside scene 5 are not bit-identical. Framemd5 differs on 441 of 684 outside frames, but the minimum PSNR there is 51.97 dB (max MSE 0.41 of 255), which looks like rasterization/encoder noise, not a visible change. Frames 0-74 and 215-359 are bit-identical."
+    }
+  ],
+  "notes": "Claude Code desktop app on Windows 11. D: had 0.5 GB free and HyperFrames refuses to render with low disk, so projects/gps-explainer/renders is a directory junction to the session scratchpad on C: (nothing on D: deleted). The first render's riser SFX was dropped by the density rule; I moved it to tri.sat3 and re-rendered before draft-delivered. bench.py start warned that an old motion-engine 0.63.1 is on PATH (not used; mstudio from the checkout venv). Weakest part: the distance scene has a 1.1 s near-static stretch (12.07-13.17 s) and small, label-free diagrams; the spheres are drawn as 2D circles.",
+  "durations_s": {
+    "setup": 139.0,
+    "draft": 1533.0,
+    "revision": 173.0,
+    "total": 1978.0
+  }
+}
