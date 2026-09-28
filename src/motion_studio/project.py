@@ -82,7 +82,7 @@ def new_project(slug: str, *, ratio: str = "9:16", fps: int = 30, duration: floa
     write_json(dest / "brief.json", {
         "title": title, "goal": "", "audience": "", "platform": "", "ratio": ratio, "fps": fps, "duration": duration,
         "language": "en", "direction": "ltr", "brand": brand or "house",
-        "music": {"source": "file", "file": "", "license": ""}, "voiceover": {"enabled": False, "file": "", "script": ""},
+        "music": {"source": "file", "file": "", "license": ""}, "voiceover": {"enabled": False, "provider": "gemini", "model": "gemini-3.8-flash-tts", "voice": "Kore", "style": "", "script": "vo.md"},
         "inputs": [], "needs": {"facts": False, "data": False, "footage": False, "stock": False},
         "deliverables": [ratio], "constraints": [], "notes": "",
     })

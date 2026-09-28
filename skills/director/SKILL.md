@@ -10,7 +10,7 @@ You decide *what* the video is before anyone decides *when* things move. Load `s
 ## 0. Intake → `brief.json`
 
 1. `mstudio new <slug> --ratio 9:16|1:1|4:5|16:9 --fps 30 --duration <s> --mode interactive|express|benchmark --title "…"`
-2. Fill `brief.json`: `title`, `goal` (one sentence: what the viewer should do or feel), `audience`, `platform`, `language` and `direction` (`rtl` for Persian), `music` (`source` = file | none, the file and its license), `voiceover`, `inputs` (every supplied file), `needs.facts` / `needs.data` / `needs.footage` / `needs.stock`, `deliverables`, `constraints`.
+2. Fill `brief.json`: `title`, `goal` (one sentence: what the viewer should do or feel), `audience`, `platform`, `language` and `direction` (`rtl` for Persian), `music` (`source` = file | none, the file and its license), `voiceover` (`enabled`, `provider: gemini`, `voice`, `style`; see `skills/voiceover`), `inputs` (every supplied file), `needs.facts` / `needs.data` / `needs.footage` / `needs.stock`, `deliverables`, `constraints`.
 3. Copy supplied files into the project (`audio/`, `footage/`, `data/raw/`, `assets/`) and add a `credits.json` entry for each one (source, license, author). A file with unknown rights needs its rights confirmed by the user. In benchmark mode the benchmark's own SOURCES files give the rights.
 4. Ask only what you cannot infer. Record every inference in `decisions.md` (`mstudio decide`).
 

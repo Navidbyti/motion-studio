@@ -8,9 +8,12 @@ node_modules/
 build/
 dist/
 
-# Secrets
+# Secrets (keys live in ~/.motion-studio/secrets, never in the repo)
 .env
 .env.*
+*_api_key.txt
+*.key
+secrets/
 
 # Working projects are private: client briefs, client names and client assets never go to this public repo
 projects/

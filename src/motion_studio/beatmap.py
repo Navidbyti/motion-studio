@@ -20,7 +20,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from .util import StudioError, read_json, sha256_file, write_json
+from .util import StudioError, ffprobe, read_json, sha256_file, write_json
 
 TIERS = ("scene", "big", "punch", "entrance", "micro", "hold", "word")
 DEFAULT_RULES = {
@@ -49,6 +49,7 @@ class Clock:
                  visual: dict[str, Any] | None, music_start_at: float, music_offset: float, fps: float):
         self.beats = beats
         self.words = words or []
+        self.segments: dict[str, dict[str, Any]] = {}   # voice-over segment id -> {start, words}
         self.visual = visual or {}
         self.start_at = music_start_at   # seconds into the music file where the edit starts
         self.offset = music_offset        # composition time at which that music point plays
@@ -118,17 +119,25 @@ class Clock:
         return self._music(t), kind
 
     def _word(self, anchor: dict[str, Any], where: str) -> float:
-        if not self.words:
-            raise BeatmapError(f"{where}: word anchors need words.json (voice-over transcript)")
+        base, words = 0.0, self.words
+        if "segment" in anchor:
+            seg = self.segments.get(anchor["segment"])
+            if seg is None:
+                raise BeatmapError(f"{where}: voice-over segment '{anchor['segment']}' is not placed in beatmap.voiceover")
+            base, words = seg["start"], seg["words"]
+            if not words:
+                raise BeatmapError(f"{where}: no word timing for segment '{anchor['segment']}': run `mstudio words <slug> {seg['file']}`")
+        if not words:
+            raise BeatmapError(f"{where}: word anchors need word timing (mstudio words)")
         if "word_index" in anchor:
-            w = self.words[int(anchor["word_index"])]
-            return float(w["start"])
+            w = words[int(anchor["word_index"])]
+            return base + float(w["start"])
         target = _norm(anchor["word"])
-        hits = [w for w in self.words if _norm(w["text"]) == target]
+        hits = [w for w in words if _norm(w["text"]) == target]
         occ = int(anchor.get("occurrence", 1))
         if len(hits) < occ:
             raise BeatmapError(f"{where}: word '{anchor['word']}' occurrence {occ} not in transcript")
-        return float(hits[occ - 1]["start"])
+        return base + float(hits[occ - 1]["start"])
 
     def visual_event(self, ref: str, where: str) -> float:
         """'<clip id>:<kind>:<n>' -> seconds inside that clip."""
@@ -162,6 +171,30 @@ def resolve(project: str | Path) -> dict[str, Any]:
 
     def issue(level: str, code: str, msg: str) -> None:
         issues.append({"level": level, "code": code, "message": msg})
+
+    # voice-over segments first: word anchors in scenes resolve against their placement
+    vo_out: dict[str, Any] = {}
+    for vo in spec.get("voiceover", []):
+        vid = vo["id"]
+        vpath = root / vo["file"]
+        if not vpath.is_file():
+            issue("error", "vo_missing", f"voiceover {vid}: {vo['file']} not found (mstudio tts)")
+            continue
+        t_vo, _ = clock.resolve(vo["at"], f"voiceover {vid}")
+        dur = ffprobe(vpath)["duration"]
+        wfile = vpath.with_name(vpath.stem + ".words.json")
+        seg_words = read_json(wfile)["words"] if wfile.is_file() else []
+        clock.segments[vid] = {"start": t_vo, "words": seg_words, "file": vo["file"]}
+        start_f = frame(t_vo, fps)
+        end_f = start_f + int(math.ceil(dur * fps))
+        if end_f > duration_frames:
+            issue("error", "vo_too_long", f"voiceover {vid} ends at frame {end_f}, after the video ({duration_frames}); start it earlier or tighten the script")
+        vo_out[vid] = {"file": vo["file"], "start_frame": start_f, "end_frame": end_f, "duration": round(dur, 4),
+                       "volume": vo.get("volume", 1), "words": len(seg_words)}
+    ordered = sorted(vo_out.items(), key=lambda kv: kv[1]["start_frame"])
+    for (a, va), (b, vb) in zip(ordered, ordered[1:]):
+        if vb["start_frame"] < va["end_frame"]:
+            issue("error", "vo_overlap", f"voiceover {b} starts at frame {vb['start_frame']} while {a} is still speaking (until {va['end_frame']})")
 
     grid = clock.grid_times()
     tol = float(rules.get("tolerance_ms", 1000 / fps / 2 + 2)) / 1000
@@ -277,7 +310,7 @@ def resolve(project: str | Path) -> dict[str, Any]:
         "fps": fps, "duration_frames": duration_frames, "duration": duration_frames / fps,
         "music": music, "rules": rules,
         "scenes": [{k: (round(v, 5) if isinstance(v, float) else v) for k, v in s.items()} for s in scenes_out],
-        "events": events_out, "media": media_out,
+        "events": events_out, "media": media_out, "voiceover": vo_out,
         "issues": issues, "ok": not any(i["level"] == "error" for i in issues),
     }
     write_json(root / "beatmap.resolved.json", resolved)
@@ -285,7 +318,8 @@ def resolve(project: str | Path) -> dict[str, Any]:
               "scenes": {s["id"]: {"start": s["enter_frame"] / fps, "cut": s["start_frame"] / fps, "end": s["end_frame"] / fps} for s in scenes_out},
               "events": {k: {"scene": v["scene"], "start": v["start_frame"] / fps, "impact": v["impact_frame"] / fps,
                              "until": None if v["until_frame"] is None else v["until_frame"] / fps, "tier": v["tier"]} for k, v in events_out.items()},
-              "media": {k: {"start": v["start_frame"] / fps, "end": v["end_frame"] / fps, "in": v["media_in"], "file": v["file"]} for k, v in media_out.items()}}
+              "media": {k: {"start": v["start_frame"] / fps, "end": v["end_frame"] / fps, "in": v["media_in"], "file": v["file"]} for k, v in media_out.items()},
+              "voiceover": {k: {"start": v["start_frame"] / fps, "end": v["end_frame"] / fps} for k, v in vo_out.items()}}
     (root / "timing.js").write_text("// generated by `mstudio beatmap` from beatmap.json; do not edit\nwindow.TIMING = "
                                      + json.dumps(timing, indent=1) + ";\n", encoding="utf-8")
     return resolved
@@ -342,6 +376,7 @@ def apply(project: str | Path) -> list[str]:
 
     html = _TAG.sub(fix, html)
     html = _sync_music(html, resolved)
+    html = _sync_voiceover(html, resolved)
     root_dur = resolved["duration"]
     html = re.sub(r'(<[^<>]*\bdata-composition-id="main"[^<>]*\bdata-duration=")[^"]*(")', rf"\g<1>{_num(root_dur)}\2", html)
     html_path.write_text(html, encoding="utf-8")
@@ -370,6 +405,25 @@ def _sync_music(html: str, resolved: dict[str, Any]) -> str:
           + f' data-volume="{music.get("volume", 1)}"></audio>\n')
     marker = "      <!-- /media -->"
     return html.replace(marker, el + marker) if marker in html else html.replace("</body>", el + "</body>")
+
+
+def _sync_voiceover(html: str, resolved: dict[str, Any]) -> str:
+    """One <audio data-vo> per placed voice-over segment, timed from the beat map."""
+    fps = resolved["fps"]
+    for vid, v in (resolved.get("voiceover") or {}).items():
+        attrs = {"src": v["file"], "data-start": _num(v["start_frame"] / fps),
+                 "data-duration": _num((v["end_frame"] - v["start_frame"]) / fps), "data-volume": str(v["volume"]), "data-track-index": "11"}
+        tag = re.search(r'<audio\b[^>]*\bdata-vo="' + re.escape(vid) + r'"[^>]*>', html)
+        if tag:
+            new = tag.group(0)[:-1]
+            for k, val in attrs.items():
+                new = _set_attr(new, k, val)
+            html = html.replace(tag.group(0), new + ">")
+        else:
+            el = f'      <audio id="vo-{vid}" data-vo="{vid}" ' + " ".join(f'{k}="{val}"' for k, val in attrs.items()) + "></audio>\n"
+            marker = "      <!-- /media -->"
+            html = html.replace(marker, el + marker) if marker in html else html.replace("</body>", el + "</body>")
+    return html
 
 
 def _ensure_scene_slots(root: Path, html: str, scene_ids: list[str]) -> str:

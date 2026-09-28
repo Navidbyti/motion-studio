@@ -92,7 +92,7 @@ See `AGENTS.md` §5 and `skills/qa`.
 
 1. Run benchmarks B1-B3 on 0.1.0 and compare them with the v0.68.0 baseline.
 2. A real-music validation set (5-10 licensed tracks across genres) for the beat analyser.
-3. Voice-over path end to end (`words.json` → word-anchored hits, music ducking via HyperFrames volume automation).
+3. Voice-over: Gemini 3.8 TTS generation, VO placement and word anchors shipped in 0.2.0. Next: automatic music ducking under speech, and a Persian VO benchmark case.
 4. Optional generated music behind our own interface (motion-video-skill's arrangement flow), without changing `beats.json`.
 5. Multi-ratio delivery from one beat map (reflow layouts per ratio).
 6. An editor UI built on open-source parts, outside GSAP's visual-builder restriction.

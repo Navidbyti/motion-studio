@@ -2,7 +2,7 @@
 
 **Turns Claude Code or Codex into a motion-graphics studio.** Pure motion design in HTML + GSAP (rendered by [HyperFrames](https://github.com/heygen-com/hyperframes)), cut on the beat, planned like a creative director, and checked by a QA gate before anyone sees it.
 
-**v0.1.0** · [changelog](CHANGELOG.md) · [agent contract](AGENTS.md) · [spec](docs/spec.md) · [benchmarks](benchmarks/README.md) · [results](benchmarks/results/RESULTS.md) · successor to the discontinued [motion-engine](https://github.com/Navidbyti/motion-engine)
+**v0.2.0** · [changelog](CHANGELOG.md) · [agent contract](AGENTS.md) · [spec](docs/spec.md) · [benchmarks](benchmarks/README.md) · [results](benchmarks/results/RESULTS.md) · successor to the discontinued [motion-engine](https://github.com/Navidbyti/motion-engine)
 
 ## Use it
 
@@ -24,6 +24,7 @@ Say "don't ask me anything" and it runs in express or benchmark mode and approve
 - **Timing is data, not typing.** A beat map (`beatmap.json`) snaps every event to a frame. The composition reads it through `Studio.hit()`, which lands each motion's impact on its frame. QA proves every hit lands.
 - **Numbers and facts are traceable.** Every on-screen number comes from a hashed data binding or a quoted source. QA fails "orphan" numbers, sign errors and counters that stop on the wrong value.
 - **Real footage is handled like an editor would.** It conforms mixed frame rates, reframes landscape to vertical with keyframed crops, and refuses crops that show bars, burn-ins or over-upscaled pixels. Natural sound goes under the music.
+- **Voice-over with Gemini 3.8 TTS.** Per-scene narration from a script, with 30 voices and 130+ languages including Persian. Each line starts on a beat, and hits can land on spoken words. Your API key is pasted into a local file that opens for you; it never goes through the chat or the repo.
 - **Sound is post-render.** SFX sit on the beat map's hits and loudness is normalized to −14 LUFS / ≤ −1 dBTP, without re-rendering a frame.
 - **A definition of done.** HyperFrames lint, layout and contrast, exact copy, reading time, safe areas per platform, text size, beat accuracy, spec, loudness, black and frozen frames, credits, and revision locality. `mstudio qa` must pass before you see a render.
 
@@ -45,13 +46,15 @@ mstudio doctor
 python -m pytest -q                          # fast tests; `-m slow` for the end-to-end render
 ```
 
-Requirements: Node.js 22+, Python 3.11+, FFmpeg/ffprobe on PATH, and Chrome (HyperFrames' headless shell or system Chrome).
+Requirements: Node.js 22+, Python 3.11+, FFmpeg/ffprobe on PATH, and Chrome (HyperFrames' headless shell or system Chrome). Optional: a Gemini API key for voice-over.
 
 | Command | Does |
 |---|---|
 | `mstudio new <slug> --ratio 9:16 --duration 30 --mode interactive` | creates `projects/<slug>/` (git-ignored) |
 | `mstudio status <slug>` | current stage, gates, next step |
 | `mstudio beats <slug> audio/track.wav` | music analysis → `audio/beats.json` |
+| `mstudio keys setup gemini --wait 300` | opens a local file for the Gemini API key, then validates it (never via chat) |
+| `mstudio tts <slug>` · `mstudio voices` | Gemini 3.8 TTS voice-over from `vo.md` → `audio/vo/<scene>.wav` |
 | `mstudio footage <slug> analyze\|conform\|reframe` | footage analysis, CFR conform, crop validation |
 | `mstudio data <slug>` / `mstudio facts <slug>` | bind numbers / verify the claim ledger |
 | `mstudio beatmap <slug> apply` | resolve and validate the beat map, generate scene slots, sync timing |

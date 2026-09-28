@@ -44,6 +44,66 @@ def _credit_defaults(dest: Path) -> None:
     write_json(dest / "credits.json", credits)
 
 
+def cmd_keys(args: argparse.Namespace) -> int:
+    from . import secrets
+    if args.action == "status":
+        for r in secrets.status():
+            where = {"env": f"from ${r['env']}", "file": f"from {r['path']}", "missing": "not set"}[r["source"]]
+            print(f"{r['name']:<8} {r['label']}: {r['masked'] or '-'} ({where})")
+        return 0
+    name = args.name or "gemini"
+    if args.action == "remove":
+        print("removed" if secrets.remove(name) else "nothing to remove")
+        return 0
+    if args.action == "check":
+        key, source = secrets.get_key(name)
+        if not key:
+            print(f"no {name} key yet: run `mstudio keys setup {name}`")
+            return 1
+        ok, msg = secrets.validate(name, key)
+        print(f"{name} key {secrets.mask(key)} ({source}): {msg}")
+        return 0 if ok else 1
+    r = secrets.setup(name, wait=args.wait, prompt=args.prompt, open_editor=not args.no_open)
+    if args.prompt:
+        print(f"saved {r['masked']} to {r['path']}: {r['message']}")
+        return 0 if r["valid"] else 1
+    print(f"key file: {r['path']}" + ("  (opened in your text editor)" if r.get("opened") else ""))
+    if not r["stored"]:
+        print("Paste the key on the empty line under the instructions, save and close the file.\n"
+              f"Then run `mstudio keys check {name}`" + (" (timed out waiting for it)" if args.wait else "") + ".")
+        return 3 if args.wait else 0
+    print(f"key {r['masked']}: {r['message']}" + (f"\nwarning: {r['warning']}" if r.get("warning") else ""))
+    return 0 if r.get("valid") else 1
+
+
+def cmd_tts(args: argparse.Namespace) -> int:
+    from . import tts
+    p = _p(args)
+    if args.text:
+        script = p / "audio" / "vo-inline.md"
+        script.parent.mkdir(parents=True, exist_ok=True)
+        script.write_text(args.text + "\n", encoding="utf-8")
+    else:
+        script = p / (args.script or "vo.md")
+        if not script.is_file():
+            raise StudioError(f"no VO script at {script.relative_to(p)}: write vo.md (see skills/voiceover) or pass --text")
+    model = tts.MODELS.get(args.model, args.model)
+    r = tts.synthesize(p, script, model=model, voice=args.voice, style=args.style,
+                       only=args.only.split(",") if args.only else None)
+    for s in r["segments"]:
+        print(f"audio/vo/{s['id']}.wav  {s['duration']:.2f}s  voice {s['voice']}")
+    print(f"manifest {r['manifest']}; next: `mstudio words {p.name} audio/vo/<segment>.wav` for word timing")
+    return 0
+
+
+def cmd_voices(_: argparse.Namespace) -> int:
+    from . import tts
+    for name, character in tts.VOICES.items():
+        print(f"{name:<14} {character}")
+    print(f"\nmodels: {tts.MODELS['flash']} (default, 130+ languages incl. Persian), {tts.MODELS['lite']} (--model lite)")
+    return 0
+
+
 def cmd_refresh(args: argparse.Namespace) -> int:
     done = project.refresh_runtime(_p(args))
     print("refreshed: " + ", ".join(done))
@@ -93,8 +153,11 @@ def cmd_words(args: argparse.Namespace) -> int:
     transcript = p / "transcript.json"
     words = read_json(transcript)
     words = words.get("words", words) if isinstance(words, dict) else words
-    write_json(p / "audio" / "words.json", {"source": args.audio, "words": [{"text": w["text"], "start": w["start"], "end": w["end"]} for w in words]})
-    print(f"{len(words)} words -> audio/words.json")
+    audio = Path(args.audio)
+    # voice-over segments keep their own word timing next to the file (beat map: {"word": ..., "segment": id})
+    out = (p / audio).with_name(audio.stem + ".words.json") if audio.parts[:2] == ("audio", "vo") else p / "audio" / "words.json"
+    write_json(out, {"source": args.audio, "words": [{"text": w["text"], "start": w["start"], "end": w["end"]} for w in words]})
+    print(f"{len(words)} words -> {out.relative_to(p).as_posix()}")
     return 0
 
 
@@ -268,6 +331,23 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--max-bpm", type=float, default=200.0)
     s.add_argument("--meter", type=int, choices=[3, 4])
     s.set_defaults(func=cmd_beats)
+    s = sub.add_parser("keys", help="local API keys: setup (opens a file to paste into) | check | status | remove")
+    s.add_argument("action", choices=["setup", "check", "status", "remove"])
+    s.add_argument("name", nargs="?", default="gemini")
+    s.add_argument("--wait", type=float, default=0.0, help="setup: wait up to N seconds for the key to be saved, then validate")
+    s.add_argument("--prompt", action="store_true", help="setup: hidden terminal input instead of a file (real terminals only)")
+    s.add_argument("--no-open", action="store_true", help="setup: create the file but don't open an editor")
+    s.set_defaults(func=cmd_keys)
+    s = sub.add_parser("tts", help="Gemini 3.8 TTS voice-over from vo.md -> audio/vo/<segment>.wav")
+    s.add_argument("project")
+    s.add_argument("--script", help="VO script (default vo.md)")
+    s.add_argument("--text", help="speak this text instead of a script (one segment 'main')")
+    s.add_argument("--voice", help="override every segment's voice (see `mstudio voices`)")
+    s.add_argument("--style", help="override every segment's delivery style, e.g. 'warm and confident'")
+    s.add_argument("--model", default="flash", help="flash (gemini-3.8-flash-tts), lite, or a full model id")
+    s.add_argument("--only", help="comma-separated segment ids to (re)generate")
+    s.set_defaults(func=cmd_tts)
+    sub.add_parser("voices", help="list Gemini TTS prebuilt voices").set_defaults(func=cmd_voices)
     s = sub.add_parser("words", help="voice-over word timestamps -> audio/words.json")
     s.add_argument("project")
     s.add_argument("audio")
