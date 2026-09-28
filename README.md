@@ -6,11 +6,13 @@
 
 ## Use it
 
-Send this repository link to a new Claude Code, Codex or Antigravity chat, attach your material (script, brief, logo, music, data, footage) and say:
+Paste this into a new Claude Code, Codex or Antigravity chat:
 
-> Set up Motion Studio from https://github.com/Navidbyti/motion-studio and follow its AGENTS.md. Make me **[a 30-second vertical promo for … / a data explainer about … / a recap from these clips]**. Show me the style brief, the beat map and the styleframes for approval, then render and QA it.
+> Set up Motion Studio from https://github.com/Navidbyti/motion-studio. Clone it into a fresh folder, then follow the "Onboarding" steps in its AGENTS.md exactly: install and check everything, ask me whether I want Gemini TTS voice-over (and set up my API key locally if I do), then ask me what video I need.
 
-The agent does the setup, the files, the commands, rendering and QA. You approve three things:
+The agent installs everything and asks whether you want AI voice-over. If you do, it opens a local file for your Gemini API key; the key never goes through the chat. Then it asks what to make: describe the video and attach your material (script, logo, music, data, footage).
+
+The agent does the files, the commands, rendering and QA. You approve three things:
 
 1. **A: creative direction.** Three concepts, one recommendation, palette, type and the special moment.
 2. **B: beat map.** Every cut, slam and reveal tied to a downbeat, snare, drop, spoken word or footage moment.
