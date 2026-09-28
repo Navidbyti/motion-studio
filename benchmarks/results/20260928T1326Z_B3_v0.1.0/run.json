@@ -1,0 +1,210 @@
+{
+  "run_id": "20260928T1326Z_B3_v0.1.0",
+  "suite_version": "1",
+  "benchmark": "B3",
+  "benchmark_title": "Motion graphics and transitions on existing footage",
+  "build": {
+    "product": "motion-studio",
+    "version": "0.1.0",
+    "installed_cli_version": "0.63.1",
+    "commit": "fe8eba4672787e67e2d35397b8e4756932a1399e",
+    "dirty_worktree": false
+  },
+  "agent": {
+    "product": "Claude Code (desktop app, subagent)",
+    "model": "claude-opus-5-5",
+    "effort": null
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "python": "3.13.2",
+    "ffmpeg": "ffmpeg version 9.0.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "inputs_verified": true,
+  "prompt": {
+    "file": "B3-artemis-recap/PROMPT.md",
+    "sha256": "0ada1efaa92e136935da5afd056921397268a01773a01fd20b26bc3b0d194bf0",
+    "text": "Edit the six attached NASA Artemis I clips in `footage/` into a 30-second vertical mission-recap video (1080×1920, 30 fps), with motion graphics and transitions on top.\n\nUse `script.md` for the clip order, exact on-screen text and the facts, which are sourced in `sources/`. The footage is landscape and mixed resolution and frame rate, so reframe each shot for vertical and keep the subject in frame. Add a title, lower thirds, an animated distance counter and an end card. Use at least three different transition types, timed to the music. Keep the real launch sound from clips 02 and 03 under the music bed, and use only the music and sound effects in `benchmarks/shared/audio/`. No voiceover. Aim for a cinematic, high-energy recap.\n"
+  },
+  "revision_prompt": {
+    "file": "B3-artemis-recap/REVISION.md",
+    "sha256": "0d2351faa613fd0407cf80c5508be01fe01c26d14f442e95bcc0285284e02ca2",
+    "text": "Revise only the Moon scene (script scene 5). Make the distance counter count up over 2 seconds instead of its current speed, move it to the top third of the frame, and add a thin line under it that draws from left to right. Leave the other scenes, the cut points, the total length and the audio unchanged.\n"
+  },
+  "expected": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration_s": 30.0,
+    "duration_tolerance_s": 0.5,
+    "audio": true
+  },
+  "timeline": {
+    "session_start": "2026-09-28T13:21:18Z",
+    "start": "2026-09-28T13:26:51Z",
+    "draft-delivered": "2026-09-28T13:53:15Z",
+    "revision-start": "2026-09-28T13:53:22Z",
+    "revision-delivered": "2026-09-28T13:58:31Z",
+    "finish": "2026-09-28T13:59:56Z"
+  },
+  "questions_to_user": [],
+  "assumptions": [
+    "Scene lengths follow the music grid (3.0/4.8/4.8/3.6/6.0/4.8/3.0 s) rather than the script guides exactly; the Moon scene keeps its 6 s and Earth is shortened to 3.6 s.",
+    "Music bed starts 1.8 s into the file so the bass enters on the ignition cut, the drums on the liftoff cut and the low section on the end card; faded out over the last 1.2 s.",
+    "The 720p clips (04-06) are shown in a 984x984 window over a blurred copy of the same shot instead of full-bleed 2.67x upscales; the 1080p clips are full-bleed 9:16 crops at 1.78-2.0x.",
+    "Clip 06 natural sound (near-silent with digital-silence gaps) is not used; only 02 and 03 natural sound is mixed.",
+    "The end card background is clip 06 continuing, heavily blurred and darkened (the script's 'freeze, blur or graphic' option).",
+    "Revision: the counter landing frame (18.6 s) and its pop cue are unchanged; the count start moved 0.8 s earlier so it runs exactly 2.0 s, keeping the audio cue sheet identical."
+  ],
+  "outputs": {
+    "draft": {
+      "local_path": "D:\\Hoteldebit\\Motion-gen-bench test\\motion-studio-B3\\projects\\artemis-recap\\renders\\delivery\\artemis-recap_9x16_v1.mp4",
+      "sha256": "b41e6d9b124fc4e34ec7d42e091c0d6ffe1c450427220682b8b4fdc901d3f3c6",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration_s": 30.0,
+      "video_codec": "h264",
+      "audio": true,
+      "bytes": 21851311,
+      "integrated_lufs": -14.0,
+      "true_peak_dbtp": -1.4,
+      "black_segments": 0,
+      "freeze_segments": 0,
+      "auto_checks": [
+        {
+          "item": "resolution",
+          "pass": true,
+          "evidence": "1080x1920"
+        },
+        {
+          "item": "fps",
+          "pass": true,
+          "evidence": "30.0"
+        },
+        {
+          "item": "duration",
+          "pass": true,
+          "evidence": "30.0 s"
+        },
+        {
+          "item": "audio stream",
+          "pass": true,
+          "evidence": "True"
+        },
+        {
+          "item": "true peak <= -1 dBTP",
+          "pass": true,
+          "evidence": "-1.4 dBTP"
+        }
+      ],
+      "proxy": "draft-proxy-540x960.mp4",
+      "contact_sheet": "draft-contact-1fps.jpg"
+    },
+    "revised": {
+      "local_path": "D:\\Hoteldebit\\Motion-gen-bench test\\motion-studio-B3\\projects\\artemis-recap\\renders\\delivery\\artemis-recap_9x16_v2.mp4",
+      "sha256": "d3fcab983ba5391ad4e309416158d82da45e2fb48ef0a5328a9a9e73f79f0f64",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration_s": 30.0,
+      "video_codec": "h264",
+      "audio": true,
+      "bytes": 21839789,
+      "integrated_lufs": -14.0,
+      "true_peak_dbtp": -1.5,
+      "black_segments": 0,
+      "freeze_segments": 0,
+      "auto_checks": [
+        {
+          "item": "resolution",
+          "pass": true,
+          "evidence": "1080x1920"
+        },
+        {
+          "item": "fps",
+          "pass": true,
+          "evidence": "30.0"
+        },
+        {
+          "item": "duration",
+          "pass": true,
+          "evidence": "30.0 s"
+        },
+        {
+          "item": "audio stream",
+          "pass": true,
+          "evidence": "True"
+        },
+        {
+          "item": "true peak <= -1 dBTP",
+          "pass": true,
+          "evidence": "-1.5 dBTP"
+        }
+      ],
+      "proxy": "revised-proxy-540x960.mp4",
+      "contact_sheet": "revised-contact-1fps.jpg"
+    }
+  },
+  "agent_checks": [
+    {
+      "item": "All six clips are used in script order, and no frames are stretched or squashed",
+      "pass": true,
+      "evidence": "Draft frames 2/45 show 01 rollout, 93-161 show 02 ignition, 236-376 show 03 liftoff, 378-482 show 04 Orion/Earth, 486-666 show 05 Moon, 668-900 show 06 splashdown (end card continues 06, blurred). Every crop in footage/reframe.json passes the validator's aspect check (9:16 crops w/h = 0.5625, 1:1 window crops 720x720 into 984x984); ffprobe: 1080x1920, SAR 1:1."
+    },
+    {
+      "item": "Every shot is reframed for vertical with its main subject in frame (the rocket, Earth's crescent, the Moon and the parachutes)",
+      "pass": true,
+      "evidence": "Frames 2 and 45: rocket and Orion centred full height. Frames 150-175: SRB and ignition flame fill the frame. Frames 260 and 376: SLS and plume centred between the towers. Frame 420: Earth's crescent fills the upper window, with the teal callout ring on its limb. Frames 540 and 600: the Moon is fully inside the window. Frames 668 and 750: both parachute clusters are inside the window above the horizon."
+    },
+    {
+      "item": "The \"913\" burn-in in clip 02 is never visible, and neither are clip 04's pillarbox bars",
+      "pass": true,
+      "evidence": "The v02 crop spans source x 380-987 (up to 974 at the end), clear of the avoid box [1440,170,240,110] around '913' (validator passes). No '913' appears in frames 93-233. The v04 crops (window x 400-1120, blurred copy x 560-965) stay inside content_box [160,0,960,720], and frames 378-482 show no black side bars."
+    },
+    {
+      "item": "Motion is smooth after conforming to 30 fps: no stutter, repeated frames or interlace artifacts",
+      "pass": true,
+      "evidence": "Clips were conformed with fps=30:round=near (59.94/60 to 30, every other frame). The draft has 0 exact repeated consecutive frames in every scene; the low-difference frames in scenes 4-6 match the near-static source (04: 221 of 239 source 60p frames differ by less than 0.3 luma). idet on the draft: 900 progressive, 0 TFF/BFF."
+    },
+    {
+      "item": "The ignition flash in clip 02 lands with the impact SFX (within ±2 frames)",
+      "pass": true,
+      "evidence": "footage.json flash:1 at clip 4.371 s is aligned to downbeat 2 = frame 162 (v02 media-start 1.771 + (5.4-2.8)). The sfx-cues.json impact is at t=5.400. In the master audio, the largest 10 ms energy rise is at 5.400 s (frame 162.0), from -20 to -8 dBFS. Frame 161 shows the flame starting and frame 162 is the white flash. Offset: 0 frames."
+    },
+    {
+      "item": "Every line in script.md appears exactly and is readable against the footage (contrast, safe area)",
+      "pass": true,
+      "evidence": "mstudio qa copy: 13/13 required strings on screen, 0 too brief. safe_area pass (220/380/72), text_size pass (min 30 px). Frames 45, 175, 260, 420, 600, 750 and 870: white type over ink scrims or dark space. The date tag sits on an ink chip. One caveat: in frames 233-236 the white flood transition briefly washes the 'Liftoff' text for about 4 frames at the scene exit."
+    },
+    {
+      "item": "At least three distinct transition types are used, cut on the beat or on action",
+      "pass": true,
+      "evidence": "Six types: ink wipe (frames 84-100, cut at 90 = downbeat 1, bass entry); white flash flood (230-248, cut at 234 = downbeat 3, drums entry and SRB flare); motion-blur whip (373-378, downbeat 5); circular iris from the Moon (480-486, beat 27, frame 482 shows the small iris disc); hard cut (666, downbeat 9); blur dissolve (804-815, downbeat 11). All cut frames are on the 100 BPM grid (beatmap resolve OK)."
+    },
+    {
+      "item": "The counter lands exactly on \"268,563\"",
+      "pass": true,
+      "evidence": "Studio.counter is bound to distance_from_earth (display '268,563', source line 25). Draft frame 600 and revised frame 558 onward show '268,563'. Revised frame 557 shows 268,562 and 558 shows 268,563; QA numbers check passes with no counter off target."
+    },
+    {
+      "item": "Launch natural sound is audible under the music, and the silent clips have no dropouts or clicks. True peak ≤ −1 dBTP.",
+      "pass": true,
+      "evidence": "Cross-correlating the master with the conformed WAVs finds 02 natural sound at gain 1.71 (energy share -5.2 dB, video 3.5-4.5 s) and 03 at gain 1.45 (share -2.4 dB, 8.5-9.5 s). The music bed dips from gain 1.55 to 0.83 under the launch. Note: in scene 3 the launch roar carries slightly more energy than the dipped bed. No dropouts: the lowest 0.25 s RMS before the final fade is -17.7 dBFS; the largest sample step is 0.22 (at 13.05 s, inside the whoosh). True peak: draft -1.4 dBTP, revised -1.5 dBTP; -14.0 LUFS integrated."
+    },
+    {
+      "item": "Revision: only scene 5 changed. The cut points and other scenes are identical to the draft.",
+      "pass": true,
+      "evidence": "mstudio revise verify: 'revision v2 changed 167 frame(s), all inside scene moon [480, 666)'. Scene boundaries and media timing in index.html are unchanged (beatmap apply updated 0 elements). SFX cue sheet is unchanged (the counter start carries no cue). Caveat: the audio is not bit-identical. HyperFrames' re-render of the natural-sound track leaves a residual about -40 dB below the mix from 7.79 s onward (picture.mp4 v1 vs v2, not a time shift). Nothing in the audio was edited, and the residual is inaudible."
+    }
+  ],
+  "notes": "mstudio qa passed on both versions (11 pass, 1 warning: HyperFrames layout/lint findings, 0 errors). revise verify: 167 changed frames, all inside the Moon scene. The revised audio is not bit-identical to the draft: HyperFrames' re-render of the natural-sound track leaves a ~-40 dB residual after 7.79 s, with no edits made. A composition bug (the ignition flash overlay showing its from-state before the hit) was found in the first render's contact sheet and fixed before the draft was delivered.",
+  "durations_s": {
+    "setup": 333.0,
+    "draft": 1584.0,
+    "revision": 309.0,
+    "total": 2318.0
+  }
+}
