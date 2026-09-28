@@ -184,5 +184,17 @@
     "draft": 1533.0,
     "revision": 173.0,
     "total": 1978.0
+  },
+  "owner_review": {
+    "scores": {
+      "design": 4,
+      "motion": 4,
+      "pacing": 4,
+      "clarity": 4,
+      "sound": 4
+    },
+    "would_publish": false,
+    "comment": "Owner: 4 overall, applied to all five dimensions. No explicit publish answer was given, so it is recorded as no.",
+    "reviewed_at": "2026-09-28T11:23:00Z"
   }
 }
