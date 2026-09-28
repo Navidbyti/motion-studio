@@ -14,6 +14,18 @@ mstudio doctor                   # every line must say ok; each failure prints i
 
 Do not ask the user to run commands, create folders or write JSON. You own the toolchain. Ask only for things you cannot produce: a creative choice at a gate, a licensed asset, an account, or brand material.
 
+### Onboarding (when the user sends only the repository link or asks to set up)
+
+Run these steps in order, with one short message to the user per step:
+
+1. **Set up.** Clone into a fresh folder (or open the existing clone and follow `git pull --ff-only`), install as above, run `python -m pytest -q` and `mstudio doctor`. Fix what you can. Report in one or two lines: "Motion Studio vX ready" plus anything that failed.
+2. **Ask about voice-over.** Ask exactly one question: *"Do you want AI voice-over (Gemini 3.8 TTS) available for your videos? It needs a Gemini API key (free to create at https://aistudio.google.com/apikey). Yes / No / Later."* Skip this question if `mstudio keys status` already shows a key; say it's already configured instead.
+   - **Yes:** run `mstudio keys setup gemini --wait 300`. It opens a local text file in their editor. Tell them: *"A file just opened: paste your Gemini API key on the empty line, save and close it. It stays on your computer, outside the project, and never goes through this chat."* When it reports the key as accepted, confirm with the masked key. If it timed out or failed, say so and let them retry or choose Later. **Never ask for the key in chat.**
+   - **No / Later:** continue without it. Voice-over can be added later with `mstudio keys setup gemini`.
+3. **Ask for the video.** *"What should we make? Describe the video (what it's for, length, format such as 9:16, 1:1 or 16:9, and style) and attach anything to use: script, logo, brand guide, music, data, footage. You can also say whether you want to approve each step (style brief, beat map, styleframes) or have me go straight through."* Then start the pipeline at stage 0 with their answer. Their answer on approvals picks the mode (interactive, express or benchmark).
+
+Don't combine these steps into one message, and don't start a project before step 3 is answered.
+
 ## 1. The pipeline (fixed order, resumable)
 
 `mstudio status <slug>` tells you the current stage from the files that exist. Always resume from there and never skip a stage.
