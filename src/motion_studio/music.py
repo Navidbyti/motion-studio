@@ -106,11 +106,12 @@ def fit(project: Path, source: Path, duration: float, *, fade_bars: float = 1.0,
         if loop_len < 2 * bar_len:
             raise StudioError("track too short to loop musically")
         reps = int(np.ceil((duration - (loop_start - first)) / loop_len)) + 1
-        head = f"[0:a]atrim={first:.4f}:{loop_end:.4f},asetpts=PTS-STARTPTS[a0]"
-        parts = [head]
+        # split the input explicitly: older FFmpeg builds don't allow reusing [0:a] in several chains
+        parts = [f"[0:a]asplit={reps}" + "".join(f"[s{i}]" for i in range(reps)),
+                 f"[s0]atrim={first:.4f}:{loop_end:.4f},asetpts=PTS-STARTPTS[a0]"]
         labels = ["[a0]"]
         for i in range(1, reps):
-            parts.append(f"[0:a]atrim={loop_start:.4f}:{loop_end:.4f},asetpts=PTS-STARTPTS[a{i}]")
+            parts.append(f"[s{i}]atrim={loop_start:.4f}:{loop_end:.4f},asetpts=PTS-STARTPTS[a{i}]")
             labels.append(f"[a{i}]")
         chain = labels[0]
         for i, lab in enumerate(labels[1:], start=1):
