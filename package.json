@@ -1,7 +1,7 @@
 {
   "name": "motion-studio",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Render + QA toolchain for Motion Studio (HyperFrames + GSAP, pinned)",
   "type": "module",
   "engines": { "node": ">=22" },

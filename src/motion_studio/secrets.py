@@ -32,7 +32,13 @@ PROVIDERS = {
         "env": "GEMINI_API_KEY",
         "label": "Google Gemini API key",
         "get_url": "https://aistudio.google.com/apikey",
-        "used_for": "Gemini TTS voice-over (mstudio tts)",
+        "used_for": "Gemini TTS voice-over (mstudio tts) and Lyria music generation (mstudio music gen)",
+    },
+    "elevenlabs": {
+        "env": "ELEVENLABS_API_KEY",
+        "label": "ElevenLabs API key",
+        "get_url": "https://elevenlabs.io/app/settings/api-keys",
+        "used_for": "generated sound effects (mstudio sfx gen)",
     },
 }
 
@@ -130,6 +136,15 @@ def validate(name: str, key: str, timeout: float = 20.0) -> tuple[bool, str]:
             return exc.code == 429, f"key {reason}"
         except (urllib.error.URLError, TimeoutError) as exc:
             return False, f"could not reach the Gemini API ({getattr(exc, 'reason', exc)})"
+    if name == "elevenlabs":
+        req = urllib.request.Request("https://api.elevenlabs.io/v1/user", headers={"xi-api-key": key})
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.status == 200, "key accepted by ElevenLabs"
+        except urllib.error.HTTPError as exc:
+            return exc.code == 429, f"key {'valid but rate-limited' if exc.code == 429 else 'rejected'} (HTTP {exc.code})"
+        except (urllib.error.URLError, TimeoutError) as exc:
+            return False, f"could not reach ElevenLabs ({getattr(exc, 'reason', exc)})"
     return False, "no validator"
 
 

@@ -103,6 +103,10 @@ def deliver(project: Path) -> dict[str, Any]:
     if not qa_report.is_file() or not read_json(qa_report).get("pass"):
         raise StudioError("QA has not passed on the current render: run `mstudio qa` first")
     master = project / "renders" / "master.mp4"
+    track = (read_json(project / "beatmap.json").get("music") or {}).get("file") if (project / "beatmap.json").is_file() else None
+    if track and (project / track).is_file():
+        from .music import record_use
+        record_use(st["slug"], project / track)   # lets QA flag a recycled bed on the next project
     dest = project / "renders" / "delivery"
     dest.mkdir(exist_ok=True)
     name = f"{st['slug']}_{st['ratio'].replace(':', 'x')}_v{st['version']}"

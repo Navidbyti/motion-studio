@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0 (2026-09-29): sound design
+
+Benchmark reviews: sound placement and tempo were right, but every video reused the same bed and effects. This release gives each project its own sound.
+
+- **Original music** (`mstudio music gen`): Google Lyria through the Interactions API with the existing Gemini key. `lyria-3-clip-preview` gives 30 s; `--full` uses `lyria-3.5` for full-length songs. The prompt builder adds BPM, key, target length and "instrumental only". Output is `audio/music/<name>.wav` (48 kHz) with the source file, the lyrics or structure text, a metadata JSON and a credits entry (SynthID watermark noted).
+- **Music fitting** (`mstudio music fit`): cuts a track to the project length starting on the first downbeat, with a bar-length fade, or loops whole bars with downbeat crossfades when it is too short.
+- **Sound-effect synth** (`mstudio sfx make`, `sfx kinds`): 13 seeded, tunable kinds (whoosh, riser, swell, impact, sub-drop, thud, hit, pop, click, glitch, shimmer, tape-stop, zap). Output is 48 kHz stereo and CC0, with loudness-balanced levels and an alignment hint per file.
+- **Variations** (`mstudio sfx vary`): pitch, tone and level variants of any sound. **ElevenLabs** sound generation (`mstudio sfx gen`) with its own local key (`mstudio keys setup elevenlabs`).
+- **Mixer:** `sfx` can be a list, to layer several sounds on one hit (extra layers sit 3 dB lower). Project sounds align by their shape: riser end, whoosh peak, impact onset. A sound that repeats gets a deterministic ±1.5 semitone and ±1 dB variation. Layers on one hit are no longer masked as duplicates.
+- **QA `sound_design`:** warns on fewer than 4 distinct sounds, one sound carrying over a third of the cues, unvaried repeats, stock-library-only mixes, and a music bed already used in an earlier delivered project (a local fingerprint registry, written by `mstudio deliver`).
+- New skill `skills/sound-design`: sound palette in the style brief, music prompting, layering and variety rules. The onboarding question now covers voice-over *and* AI music (one Gemini key).
+
 ## 0.2.0 (2026-09-28): Gemini TTS voice-over
 
 - **Local API keys** (`mstudio keys setup|check|status|remove`). `setup gemini` creates `~/.motion-studio/secrets/gemini_api_key.txt`, outside the repo and user-only on POSIX, and opens it in Notepad or the default editor for the user to paste into. `--wait N` waits for the save and validates it with a free models-list call. `--prompt` takes hidden terminal input instead. `GEMINI_API_KEY` overrides the file. Keys are masked in all output and scrubbed from API errors. Agents are told never to ask for keys in chat.

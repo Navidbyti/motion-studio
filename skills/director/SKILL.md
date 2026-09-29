@@ -26,7 +26,8 @@ Read `third_party/motion-bang-bang/references/opener-konsep.md` (19 concepts) an
 6. **Background motion:** what moves when nothing else does (drift, grain, parallax).
 7. **One special moment:** the single shot people remember. It usually sits on the drop.
 8. **Transitions:** at least three distinct types, each tied to a tier (cut on downbeat, wipe on snare, flood on drop, whip on section).
-9. **Stock policy:** "none", or name the exact scene that needs real imagery and why. Stock is never a full-screen slideshow background. It is masked, graded or framed inside a device or shape.
+9. **Sound palette:** music source (original via `mstudio music gen`, or the client's track), 3-6 SFX families, one sonic signature, ambience, and where silence goes. See `skills/sound-design`.
+10. **Stock policy:** "none", or name the exact scene that needs real imagery and why. Stock is never a full-screen slideshow background. It is masked, graded or framed inside a device or shape.
 
 Show the style brief (interactive: to the human; benchmark: check it against this list yourself), then `mstudio gate <slug> A --by …`.
 

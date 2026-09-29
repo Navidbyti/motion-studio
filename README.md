@@ -2,7 +2,7 @@
 
 **Turns Claude Code or Codex into a motion-graphics studio.** Pure motion design in HTML + GSAP (rendered by [HyperFrames](https://github.com/heygen-com/hyperframes)), cut on the beat, planned like a creative director, and checked by a QA gate before anyone sees it.
 
-**v0.2.0** · [changelog](CHANGELOG.md) · [agent contract](AGENTS.md) · [spec](docs/spec.md) · [benchmarks](benchmarks/README.md) · [results](benchmarks/results/RESULTS.md) · successor to the discontinued [motion-engine](https://github.com/Navidbyti/motion-engine)
+**v0.3.0** · [changelog](CHANGELOG.md) · [agent contract](AGENTS.md) · [spec](docs/spec.md) · [benchmarks](benchmarks/README.md) · [results](benchmarks/results/RESULTS.md) · successor to the discontinued [motion-engine](https://github.com/Navidbyti/motion-engine)
 
 ## Use it
 
@@ -27,6 +27,7 @@ Say "don't ask me anything" and it runs in express or benchmark mode and approve
 - **Numbers and facts are traceable.** Every on-screen number comes from a hashed data binding or a quoted source. QA fails "orphan" numbers, sign errors and counters that stop on the wrong value.
 - **Real footage is handled like an editor would.** It conforms mixed frame rates, reframes landscape to vertical with keyframed crops, and refuses crops that show bars, burn-ins or over-upscaled pixels. Natural sound goes under the music.
 - **Voice-over with Gemini 3.8 TTS.** Per-scene narration from a script, with 30 voices and 130+ languages including Persian. Each line starts on a beat, and hits can land on spoken words. Your API key is pasted into a local file that opens for you; it never goes through the chat or the repo.
+- **Its own sound for every video.** Original music per project (Google Lyria, same Gemini key) is cut to length on bar lines. Unlimited rights-free sound effects come from a built-in synthesizer (13 kinds, seeded, tunable), plus variations and optional ElevenLabs generation. Big hits get layered sounds, repeats are varied automatically, and QA flags recycled beds or repetitive effects.
 - **Sound is post-render.** SFX sit on the beat map's hits and loudness is normalized to −14 LUFS / ≤ −1 dBTP, without re-rendering a frame.
 - **A definition of done.** HyperFrames lint, layout and contrast, exact copy, reading time, safe areas per platform, text size, beat accuracy, spec, loudness, black and frozen frames, credits, and revision locality. `mstudio qa` must pass before you see a render.
 
@@ -57,6 +58,8 @@ Requirements: Node.js 22+, Python 3.11+, FFmpeg/ffprobe on PATH, and Chrome (Hyp
 | `mstudio beats <slug> audio/track.wav` | music analysis → `audio/beats.json` |
 | `mstudio keys setup gemini --wait 300` | opens a local file for the Gemini API key, then validates it (never via chat) |
 | `mstudio tts <slug>` · `mstudio voices` | Gemini 3.8 TTS voice-over from `vo.md` → `audio/vo/<scene>.wav` |
+| `mstudio music <slug> gen --prompt …` · `fit <file>` | original music with Lyria / edit a track to length on bar lines |
+| `mstudio sfx make <slug> <kind>` · `vary` · `gen` · `sfx kinds` | project sound effects: synth (CC0), variations, ElevenLabs |
 | `mstudio footage <slug> analyze\|conform\|reframe` | footage analysis, CFR conform, crop validation |
 | `mstudio data <slug>` / `mstudio facts <slug>` | bind numbers / verify the claim ledger |
 | `mstudio beatmap <slug> apply` | resolve and validate the beat map, generate scene slots, sync timing |

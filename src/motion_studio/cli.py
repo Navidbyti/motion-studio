@@ -96,6 +96,55 @@ def cmd_tts(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_music(args: argparse.Namespace) -> int:
+    from . import music
+    p = _p(args)
+    if args.action == "gen":
+        if not args.prompt:
+            raise StudioError("--prompt is required: describe genre, instruments, mood, BPM, key and structure")
+        st = state(p)
+        meta = music.generate(p, args.prompt, full=args.full, name=args.name, bpm=args.bpm, key=args.key,
+                              instrumental=not args.vocals, duration=args.duration or st["duration"])
+        print(f"{meta['file']}  {meta['duration']:.1f}s  ({meta['model']})")
+        print(f"next: `mstudio beats {p.name} {meta['file']}`, then `mstudio music {p.name} fit {meta['file']}` if it needs editing to length")
+    else:
+        if not args.file:
+            raise StudioError("pass the track to fit, e.g. audio/music/bed.wav")
+        duration = args.duration or state(p)["duration"]
+        r = music.fit(p, p / args.file, duration)
+        print(f"{r['file']}  {r['duration']:.2f}s at {r['bpm']:.1f} BPM ({r['method']}); analyse it with `mstudio beats` and point beatmap.music at it")
+    return 0
+
+
+def cmd_sfx(args: argparse.Namespace) -> int:
+    from . import sfx
+    if args.action == "kinds":
+        for name, (_, d, desc) in sfx.KINDS.items():
+            print(f"{name:<10} {d:>4.2f}s  {desc}")
+        return 0
+    if not args.project:
+        raise StudioError("pass the project slug")
+    p = _p(args)
+    if args.action == "make":
+        if not args.what:
+            raise StudioError("which kind? see `mstudio sfx kinds`")
+        count = max(1, args.count)
+        for i in range(count):
+            r = sfx.make(p, args.what, name=(args.name if count == 1 else f"{args.name or args.what}-{args.seed + i}") if args.name or count > 1 else None,
+                         duration=args.duration, seed=args.seed + i, pitch=args.pitch, bright=args.bright, pan=args.pan)
+            print(f"{r['file']}  {r['duration']:.2f}s")
+    elif args.action == "vary":
+        for f in sfx.vary(p, p / args.what, count=args.count, seed=args.seed):
+            print(f)
+    else:
+        if not args.name:
+            raise StudioError("--name is required for generated sounds")
+        r = sfx.gen_elevenlabs(p, args.what, name=args.name, duration=args.duration, loop=args.loop)
+        print(r["file"])
+    print('use in beatmap.json: "sfx": "file:audio/sfx/<name>.wav" (or a list to layer sounds on one hit)')
+    return 0
+
+
 def cmd_voices(_: argparse.Namespace) -> int:
     from . import tts
     for name, character in tts.VOICES.items():
@@ -348,6 +397,31 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--only", help="comma-separated segment ids to (re)generate")
     s.set_defaults(func=cmd_tts)
     sub.add_parser("voices", help="list Gemini TTS prebuilt voices").set_defaults(func=cmd_voices)
+    s = sub.add_parser("music", help="gen: original music with Lyria (Gemini key) | fit: edit a track to length on bar lines")
+    s.add_argument("project")
+    s.add_argument("action", choices=["gen", "fit"])
+    s.add_argument("file", nargs="?", help="fit: the track to edit")
+    s.add_argument("--prompt", help="gen: genre, instruments, mood, energy curve")
+    s.add_argument("--full", action="store_true", help="gen: lyria-3.5 full-length (default: lyria-3-clip-preview, 30 s)")
+    s.add_argument("--name", default="bed")
+    s.add_argument("--bpm", type=float)
+    s.add_argument("--key", help="musical key, e.g. 'D minor'")
+    s.add_argument("--vocals", action="store_true", help="allow vocals (default: instrumental only)")
+    s.add_argument("--duration", type=float, help="target length (default: project duration)")
+    s.set_defaults(func=cmd_music)
+    s = sub.add_parser("sfx", help="kinds | make <kind> | vary <file> | gen \"prompt\" (ElevenLabs)")
+    s.add_argument("action", choices=["kinds", "make", "vary", "gen"])
+    s.add_argument("project", nargs="?")
+    s.add_argument("what", nargs="?", help="make: kind; vary: file; gen: text prompt")
+    s.add_argument("--name")
+    s.add_argument("--duration", type=float)
+    s.add_argument("--seed", type=int, default=0)
+    s.add_argument("--count", type=int, default=1, help="make: several seeds; vary: number of variants (default 1 / 3)")
+    s.add_argument("--pitch", type=float, default=1.0)
+    s.add_argument("--bright", type=float, default=0.6)
+    s.add_argument("--pan", choices=["c", "lr", "rl"], default="c")
+    s.add_argument("--loop", action="store_true", help="gen: seamless loop (ambience)")
+    s.set_defaults(func=cmd_sfx)
     s = sub.add_parser("words", help="voice-over word timestamps -> audio/words.json")
     s.add_argument("project")
     s.add_argument("audio")

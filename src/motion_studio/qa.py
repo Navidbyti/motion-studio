@@ -253,6 +253,36 @@ def check_media(rep: Report, project: Path) -> None:
         str(project / "renders" / "qa" / "contact.jpg")], check=False)
 
 
+def check_sound_design(rep: Report, project: Path) -> None:
+    """Variety, not just placement: distinct sounds per hit type, no copy-paste repeats, no recycled music bed."""
+    from . import music as music_mod
+    items: list[str] = []
+    cues_path = project / "renders" / "sfx-cues.json"
+    active = [c for c in read_json(cues_path) if not c.get("dropped")] if cues_path.is_file() else []
+    if active:
+        files = [c["file"] for c in active]
+        distinct = len(set(files))
+        library_only = all(f.startswith("@repo/") for f in files)
+        exact_repeats = [f for f in set(files) if sum(1 for c in active if c["file"] == f and not c.get("semitones")) > 1]
+        heavy = [f"{f.split('/')[-1]} x{files.count(f)}" for f in set(files) if files.count(f) > max(4, len(files) // 3)]
+        if distinct < min(4, len(files)):
+            items.append(f"only {distinct} distinct sound(s) for {len(files)} cues")
+        if heavy:
+            items.append("leaning on one sound: " + ", ".join(heavy))
+        if exact_repeats:
+            items.append(f"{len(exact_repeats)} sound(s) repeat without variation")
+        if library_only and len(files) >= 6:
+            items.append("every cue comes from the stock SFX library; add project sounds (mstudio sfx make/vary/gen)")
+    brief = read_json(project / "brief.json")
+    track = (read_json(project / "beatmap.json").get("music") or {}).get("file") if (project / "beatmap.json").is_file() else None
+    if track and (project / track).is_file() and not brief.get("music", {}).get("brand_music"):
+        others = music_mod.used_elsewhere(state(project)["slug"], project / track)
+        if others:
+            items.append(f"music bed already used in: {', '.join(others[:5])} (generate a new one: mstudio music gen, or mark brief.music.brand_music)")
+    rep.add("sound_design", "warning" if items else "pass",
+            f"{len(set(c['file'] for c in active))} distinct sounds across {len(active)} cues" if active else "no SFX cues", items)
+
+
 def check_credits(rep: Report, project: Path) -> None:
     credits = read_json(project / "credits.json").get("assets", [])
     listed = {c.get("path", "").rstrip("/") for c in credits}
@@ -309,6 +339,7 @@ def run(project: Path, *, skip_media: bool = False) -> dict[str, Any]:
     check_beats(rep, project, insp)
     if not skip_media:
         check_media(rep, project)
+        check_sound_design(rep, project)
         check_revision(rep, project)
     check_credits(rep, project)
     failed = [c for c in rep.checks if c["status"] == "error"]

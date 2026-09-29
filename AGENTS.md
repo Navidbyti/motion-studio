@@ -19,9 +19,9 @@ Do not ask the user to run commands, create folders or write JSON. You own the t
 Run these steps in order, with one short message to the user per step:
 
 1. **Set up.** Clone into a fresh folder (or open the existing clone and follow `git pull --ff-only`), install as above, run `python -m pytest -q` and `mstudio doctor`. Fix what you can. Report in one or two lines: "Motion Studio vX ready" plus anything that failed.
-2. **Ask about voice-over.** Ask exactly one question: *"Do you want AI voice-over (Gemini 3.8 TTS) available for your videos? It needs a Gemini API key (free to create at https://aistudio.google.com/apikey). Yes / No / Later."* Skip this question if `mstudio keys status` already shows a key; say it's already configured instead.
+2. **Ask about voice-over.** Ask exactly one question: *"Do you want AI voice-over (Gemini 3.8 TTS) and original AI music (Lyria) available for your videos? Both use one Gemini API key (free to create at https://aistudio.google.com/apikey). Yes / No / Later."* Skip this question if `mstudio keys status` already shows a key; say it's already configured instead.
    - **Yes:** run `mstudio keys setup gemini --wait 300`. It opens a local text file in their editor. Tell them: *"A file just opened: paste your Gemini API key on the empty line, save and close it. It stays on your computer, outside the project, and never goes through this chat."* When it reports the key as accepted, confirm with the masked key. If it timed out or failed, say so and let them retry or choose Later. **Never ask for the key in chat.**
-   - **No / Later:** continue without it. Voice-over can be added later with `mstudio keys setup gemini`.
+   - **No / Later:** continue without it. Voice-over and generated music can be added later with `mstudio keys setup gemini`. Sound effects never need a key (`mstudio sfx make`); ElevenLabs-generated effects are optional (`mstudio keys setup elevenlabs`).
 3. **Ask for the video.** *"What should we make? Describe the video (what it's for, length, format such as 9:16, 1:1 or 16:9, and style) and attach anything to use: script, logo, brand guide, music, data, footage. You can also say whether you want to approve each step (style brief, beat map, styleframes) or have me go straight through."* Then start the pipeline at stage 0 with their answer. Their answer on approvals picks the mode (interactive, express or benchmark).
 
 Don't combine these steps into one message, and don't start a project before step 3 is answered.
@@ -33,9 +33,9 @@ Don't combine these steps into one message, and don't start a project before ste
 | Stage | Load skill | You produce | Gate |
 |---|---|---|---|
 | 0 Intake | `skills/director` | `mstudio new <slug> …`, then fill `brief.json` (goal, audience, ratio, length, music, voice-over, needs) | |
-| 1 Direction | `skills/director` + `skills/house-style` | `style-brief.md`: 3 concepts, 1 recommendation, palette (a source for every color), type, background motion, one special moment | **A** |
+| 1 Direction | `skills/director` + `skills/house-style` + `skills/sound-design` | `style-brief.md`: 3 concepts, 1 recommendation, palette (a source for every color), type, background motion, one special moment, **sound palette** | **A** |
 | 2 Script | `skills/director` | `script.md` with exact on-screen copy, then `mstudio copy <slug>` → review `copy.json` | |
-| 3 Audio | `skills/beat-editor`, `skills/voiceover` | `mstudio beats <slug> audio/<track>` → `audio/beats.json`; voice-over: `mstudio keys setup gemini`, `vo.md`, `mstudio tts`, `mstudio words` | |
+| 3 Audio | `skills/sound-design`, `skills/beat-editor`, `skills/voiceover` | original music (`mstudio music gen` / `fit`) or the client's track, project sounds (`mstudio sfx make/vary/gen`), `mstudio beats` → `audio/beats.json`; voice-over: `vo.md`, `mstudio tts`, `mstudio words` | |
 | 3b Sources | `skills/data-viz`, `skills/footage` | `data/bindings.json` + `mstudio data`; `facts/claims.json` + `mstudio facts`; `mstudio footage analyze/conform` + `footage/reframe.json` | |
 | 4 Beat map | `skills/beat-editor` | `beatmap.json`; `mstudio beatmap <slug> apply` until it prints OK | **B** |
 | 5 Styleframes | `skills/builder` | build the key moments, `mstudio styleframes <slug> --events …` | **C** |
@@ -84,6 +84,8 @@ Work as four roles, as subagents where your tool supports them, otherwise as sep
 
 ## 4. Creative rules
 
+- **Sound is part of the concept:** every project gets its own sound palette (original or client music, project-made SFX, a sonic signature). Never recycle the previous project's bed or lean on the stock SFX library. See `skills/sound-design`.
+
 - **Variety:** a new project must differ from the previous ones in concept and structure (scene count, hero object, opening hook, closing payoff), not just colors. Record its structural fingerprint in the style brief. House-style tokens stay constant; variety never means off-brand.
 - **Reference videos:** take rhythm, energy and motion language only. Never copy their palette, layout, scene order or signature moments.
 - **Anti-slide:** no fade-between-slides structure, no centered title over a photo by default, no three-tier text stacks, no stock corporate icons. See `third_party/motion-bang-bang/references/anti-ppt.md`.
@@ -101,7 +103,7 @@ Hand off with the MP4 path, the QA summary, remaining warnings, facts that still
 src/motion_studio/    mstudio CLI: beats, beatmap, data, claims, footage, audio, render, qa, revise, project, doctor
 engine/inspect.mjs    headless-Chrome timeline/DOM inspector used by QA
 templates/composition index.html (thin host), scene.html, studio.js runtime helpers, house.css tokens
-skills/               director, beat-editor, voiceover, builder, footage, data-viz, qa, revise, house-style
+skills/               director, beat-editor, sound-design, voiceover, builder, footage, data-viz, qa, revise, house-style
 third_party/          vendored upstreams with their LICENSE files (see THIRD_PARTY_NOTICES.md)
 benchmarks/           frozen benchmark suite v1 + bench.py timer; run each case in a fresh chat
 examples/             public example projects

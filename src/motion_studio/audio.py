@@ -64,6 +64,17 @@ def _resolve_cue_file(name: str, project: Path) -> str:
     return str(REPO / name[6:]) if name.startswith("@repo/") else str((project / name) if not Path(name).is_absolute() else Path(name))
 
 
+def _duration(path: Path) -> float:
+    return ffprobe(path)["duration"]
+
+
+def _jitter(*parts: str, span: float = 1.0) -> float:
+    """Deterministic value in [-span, span] from a stable hash (same project -> same mix)."""
+    import hashlib
+    h = int(hashlib.sha256("|".join(parts).encode()).hexdigest()[:8], 16) / 0xFFFFFFFF
+    return (h * 2 - 1) * span
+
+
 def cues(project: Path) -> list[dict[str, Any]]:
     """Cue sheet from beatmap.json `sfx` fields (plus tier defaults when rules.auto_sfx is on)."""
     spec = read_json(project / "beatmap.json")
@@ -76,39 +87,55 @@ def cues(project: Path) -> list[dict[str, Any]]:
         for trig in a.get("trigger", []):
             by_trigger.setdefault(trig, []).append(a)
     raw_events = {ev["id"]: ev for sc in spec["scenes"] for ev in sc.get("events", [])}
+    project_sfx = read_json(project / "audio" / "sfx" / "sfx.json") if (project / "audio" / "sfx" / "sfx.json").is_file() else {}
     out = []
     use_count: dict[str, int] = {}
+    file_uses: dict[str, int] = {}
     for eid, e in sorted(resolved["events"].items(), key=lambda kv: kv[1]["impact_frame"]):
         want = raw_events.get(eid, {}).get("sfx", "auto" if auto else None)
         if want in (None, "none", False):
             continue
         tier = e["tier"]
-        if want == "auto":
-            trig = TIER_TRIGGER.get(tier)
-            if not trig or trig not in by_trigger:
-                continue
-            pool = by_trigger[trig]
-            asset = pool[use_count.get(trig, 0) % len(pool)]  # rotate takes so repeats do not sound mechanical
-            use_count[trig] = use_count.get(trig, 0) + 1
-            file, family = LIBRARY / asset["file"], asset["family"]
-        elif str(want).startswith("file:"):
-            file, family = project / str(want)[5:], "custom"
-        else:
-            pool = [a for a in assets if a["family"] == want]
-            if not pool:
-                raise StudioError(f"event {eid}: no SFX family '{want}' (families: {sorted({a['family'] for a in assets})})")
-            asset = pool[use_count.get(want, 0) % len(pool)]
-            use_count[want] = use_count.get(want, 0) + 1
-            file, family = LIBRARY / asset["file"], asset["family"]
-        if not file.is_file():
-            raise StudioError(f"event {eid}: SFX file {file} missing")
-        fam = mix.get(family, {"gain_db": -12, "max_hits_per_s": 2})
-        onset, peak = _wav_envelope_peak(file)
-        align = peak if family in PEAK_ALIGNED else onset
-        t = e["impact_frame"] / fps - align
-        gain = fam["gain_db"] + TIER_GAIN.get(tier, 0.0) + float(raw_events.get(eid, {}).get("sfx_gain_db", 0.0))
-        out.append({"event": eid, "tier": tier, "family": family, "file": _portable(file, project), "t": round(max(0.0, t), 4),
-                    "impact": e["impact_frame"] / fps, "gain_db": round(gain, 2), "max_hits_per_s": fam.get("max_hits_per_s", 2)})
+        layers = want if isinstance(want, list) else [want]      # a list layers several sounds on one hit
+        for layer_i, one in enumerate(layers):
+            if one == "auto":
+                trig = TIER_TRIGGER.get(tier)
+                if not trig or trig not in by_trigger:
+                    continue
+                pool = by_trigger[trig]
+                asset = pool[use_count.get(trig, 0) % len(pool)]  # rotate takes so repeats do not sound mechanical
+                use_count[trig] = use_count.get(trig, 0) + 1
+                file, family, align_mode = LIBRARY / asset["file"], asset["family"], None
+            elif str(one).startswith("file:"):
+                file = project / str(one)[5:]
+                meta = project_sfx.get(file.name, {})
+                family, align_mode = "custom", meta.get("align")
+            else:
+                pool = [a for a in assets if a["family"] == one]
+                if not pool:
+                    raise StudioError(f"event {eid}: no SFX family '{one}' (families: {sorted({a['family'] for a in assets})}); "
+                                      "or use \"file:audio/sfx/<name>.wav\" for project sounds (mstudio sfx)")
+                asset = pool[use_count.get(one, 0) % len(pool)]
+                use_count[one] = use_count.get(one, 0) + 1
+                file, family, align_mode = LIBRARY / asset["file"], asset["family"], None
+            if not file.is_file():
+                raise StudioError(f"event {eid}: SFX file {file} missing")
+            fam = mix.get(family, {"gain_db": -12, "max_hits_per_s": 2})
+            onset, peak = _wav_envelope_peak(file)
+            length = _duration(file)
+            mode = align_mode or ("peak" if family in PEAK_ALIGNED else "onset")
+            align = {"peak": peak, "onset": onset, "end": length}.get(mode, onset)
+            t = e["impact_frame"] / fps - align
+            gain = fam["gain_db"] + TIER_GAIN.get(tier, 0.0) + float(raw_events.get(eid, {}).get("sfx_gain_db", 0.0)) - 3.0 * (layer_i > 0)
+            key = _portable(file, project)
+            n = file_uses.get(key, 0)
+            file_uses[key] = n + 1
+            # a repeated sound gets a small, deterministic pitch/level shift so it never sounds copy-pasted
+            semis = 0.0 if n == 0 else _jitter(eid, key, span=1.5)
+            out.append({"event": eid, "tier": tier, "family": family if layer_i == 0 else f"{family}+layer", "file": key,
+                        "t": round(max(0.0, t), 4), "impact": e["impact_frame"] / fps, "align": mode,
+                        "gain_db": round(gain + (0 if n == 0 else _jitter(eid, key + "g", span=1.0)), 2), "semitones": round(semis, 2),
+                        "repeat": n, "max_hits_per_s": fam.get("max_hits_per_s", 2)})
     # density: per family, keep the stronger tier when two cues crowd the same second
     order = {"scene": 0, "big": 1, "counter": 2, "punch": 3, "entrance": 4, "micro": 5}
     kept: list[dict[str, Any]] = []
@@ -118,7 +145,7 @@ def cues(project: Path) -> list[dict[str, Any]]:
         if limit and len(window) >= limit:
             c["dropped"] = "family density"
             continue
-        if any(abs(k["impact"] - c["impact"]) < 0.06 for k in kept):
+        if any(abs(k["impact"] - c["impact"]) < 0.06 and k["event"] != c["event"] for k in kept):
             c["dropped"] = "masked by a simultaneous cue"
             continue
         kept.append(c)
@@ -145,7 +172,8 @@ def mix(project: Path, *, target_lufs: float = -14.0, ceiling_dbtp: float = -1.5
         for i, c in enumerate(active, start=1):
             inputs += ["-i", _resolve_cue_file(c["file"], project)]
             ms = int(round(c["t"] * 1000))
-            chains.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={c['gain_db']}dB,adelay={ms}|{ms}[c{i}]")
+            pitch = f"asetrate={int(48000 * 2 ** (c.get('semitones', 0) / 12))},aresample=48000," if c.get("semitones") else ""
+            chains.append(f"[{i}:a]aresample=48000,{pitch}aformat=channel_layouts=stereo,volume={c['gain_db']}dB,adelay={ms}|{ms}[c{i}]")
             labels.append(f"[c{i}]")
         chains.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0:dropout_transition=0,atrim=0:{duration:.4f}[mix]")
         run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(chains), "-map", "[mix]",
