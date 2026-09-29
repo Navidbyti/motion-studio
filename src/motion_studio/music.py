@@ -105,22 +105,35 @@ def fit(project: Path, source: Path, duration: float, *, fade_bars: float = 1.0,
         loop_len = loop_end - loop_start
         if loop_len < 2 * bar_len:
             raise StudioError("track too short to loop musically")
-        reps = int(np.ceil((duration - (loop_start - first)) / loop_len)) + 1
-        # split the input explicitly: older FFmpeg builds don't allow reusing [0:a] in several chains
-        parts = [f"[0:a]asplit={reps}" + "".join(f"[s{i}]" for i in range(reps)),
-                 f"[s0]atrim={first:.4f}:{loop_end:.4f},asetpts=PTS-STARTPTS[a0]"]
-        labels = ["[a0]"]
-        for i in range(1, reps):
-            parts.append(f"[s{i}]atrim={loop_start:.4f}:{loop_end:.4f},asetpts=PTS-STARTPTS[a{i}]")
-            labels.append(f"[a{i}]")
-        chain = labels[0]
-        for i, lab in enumerate(labels[1:], start=1):
-            parts.append(f"{chain}{lab}acrossfade=d=0.03:c1=tri:c2=tri[x{i}]")
-            chain = f"[x{i}]"
-        parts.append(f"{chain}atrim=0:{duration:.4f},afade=t=out:st={duration - fade:.4f}:d={fade:.4f}[out]")
-        run(["ffmpeg", "-v", "error", "-y", "-i", str(source), "-filter_complex", ";".join(parts), "-map", "[out]",
-             "-ar", "48000", "-ac", "2", str(out)])
-        method = f"looped bars {loop_start:.2f}-{loop_end:.2f}s x{reps - 1}"
+        # splice in numpy (identical on every FFmpeg version): intro + body, then the body again and again,
+        # joined on downbeats with 30 ms equal-power crossfades, cut to length with a bar-long fade
+        import subprocess
+        import wave
+        sr = 48000
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(source), "-ac", "2", "-ar", str(sr), "-f", "f32le", "-"],
+                             capture_output=True, check=True).stdout
+        y = np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).astype(np.float64)
+        a, b, c = (int(round(x * sr)) for x in (first, loop_start, loop_end))
+        xf = int(0.03 * sr)
+        ramp = np.sin(np.linspace(0, np.pi / 2, xf))[:, None]
+        outbuf = y[a:c].copy()
+        body = y[b:c]
+        target = int(round(duration * sr))
+        reps = 0
+        while len(outbuf) < target:
+            tail = outbuf[-xf:] * ramp[::-1] + body[:xf] * ramp
+            outbuf = np.concatenate([outbuf[:-xf], tail, body[xf:]])
+            reps += 1
+        outbuf = outbuf[:target]
+        nf = int(round(fade * sr))
+        outbuf[-nf:] *= np.linspace(1, 0, nf)[:, None]
+        pcm = (np.clip(outbuf, -1, 1) * 32767).astype("<i2")
+        with wave.open(str(out), "wb") as w:
+            w.setnchannels(2)
+            w.setsampwidth(2)
+            w.setframerate(sr)
+            w.writeframes(pcm.tobytes())
+        method = f"looped bars {loop_start:.2f}-{loop_end:.2f}s x{reps}"
     return {"file": str(out.relative_to(project)).replace("\\", "/"), "duration": round(ffprobe(out)["duration"], 3),
             "bpm": analysis["tempo"]["bpm"], "method": method}
 
